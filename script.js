@@ -5,6 +5,8 @@ const destinations = [
     type: "Hill country & coffee",
     region: "Coast & hills",
     image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Araku_Valley_coffee_plantations5.jpg/1280px-Araku_Valley_coffee_plantations5.jpg",
+    imageFallback:
       "https://upload.wikimedia.org/wikipedia/commons/e/ee/Araku_Valley_coffee_plantations5.jpg",
     imageCredit: "Tarunsamanta · CC BY-SA 4.0",
     imageCreditUrl:
@@ -144,7 +146,12 @@ const destinations = [
     type: "Vijayanagara art & architecture",
     region: "Rayalaseema",
     image:
-      "https://lepakshitemple.in/wp-content/uploads/2023/10/sri-veerabhadra-temple-lepakshi-hanging-pillar.webp",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b3/N-AP-9_Monolithic_Granite_Nandhi_Lepakshi.jpg/1280px-N-AP-9_Monolithic_Granite_Nandhi_Lepakshi.jpg",
+    imageFallback:
+      "https://upload.wikimedia.org/wikipedia/commons/b/b3/N-AP-9_Monolithic_Granite_Nandhi_Lepakshi.jpg",
+    imageCredit: "MADHURANTHAKAN JAGADEESAN · CC BY-SA 4.0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:N-AP-9_Monolithic_Granite_Nandhi_Lepakshi.jpg",
     tag: "Living history",
     intro:
       "A remarkable temple village where monumental sculpture, painted ceilings and Vijayanagara craftsmanship reward a slow visit.",
@@ -172,7 +179,12 @@ const destinations = [
     type: "Underground limestone passages",
     region: "Rayalaseema",
     image:
-      "https://img.onmanorama.com/content/dam/mm/en/travel/outside-kerala/images/2022/6/8/belum-caves-3.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d0/The_Main_Caves%2C_Belum%2C_Andhra_Pradesh.jpg/1280px-The_Main_Caves%2C_Belum%2C_Andhra_Pradesh.jpg",
+    imageFallback:
+      "https://upload.wikimedia.org/wikipedia/commons/d/d0/The_Main_Caves%2C_Belum%2C_Andhra_Pradesh.jpg",
+    imageCredit: "Naga Praveena Sharma P · CC BY-SA 3.0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:The_Main_Caves,_Belum,_Andhra_Pradesh.jpg",
     tag: "Under the surface",
     intro:
       "A large natural cave system with winding passages, chambers and striking limestone formations beneath the dry plateau.",
@@ -199,7 +211,12 @@ const destinations = [
     type: "Nallamala pilgrimage trail",
     region: "Rayalaseema",
     image:
-      "https://images.nativeplanet.com/img/2016/05/ahobilamtemple-20-1463746990.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/7/70/Upper_Ahobilam_temple_Gopuram.jpg",
+    imageFallback:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/Upper_Ahobilam_temple_Gopuram.jpg?width=1024",
+    imageCredit: "Sai Sreekanth · CC BY-SA 2.0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:Upper_Ahobilam_temple_Gopuram.jpg",
     tag: "Hill pilgrimage",
     intro:
       "A sacred landscape of shrines set among the rugged Nallamala hills, closely associated with the Narasimha tradition.",
@@ -254,6 +271,8 @@ const destinations = [
     type: "Eastern Ghats hill station",
     region: "Rayalaseema",
     image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_Horsely_hills_01.jpg/1280px-View_from_Horsely_hills_01.jpg",
+    imageFallback:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/View_from_Horsely_hills_01.jpg/1024px-View_from_Horsely_hills_01.jpg",
     imageCredit: "suffering_socrates · CC BY 2.0",
     imageCreditUrl:
@@ -284,7 +303,12 @@ const destinations = [
     type: "Temple architecture & hill setting",
     region: "Rayalaseema",
     image:
-      "https://i0.wp.com/hindupost.in/wp-content/uploads/2020/09/yaganti-temple.png?ssl=1",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Yaganti_Temple_in_Andhra_Pradesh.jpg/1280px-Yaganti_Temple_in_Andhra_Pradesh.jpg",
+    imageFallback:
+      "https://upload.wikimedia.org/wikipedia/commons/2/21/Yaganti_Temple_in_Andhra_Pradesh.jpg",
+    imageCredit: "Vikas Kumar Chaturvedi · CC BY-SA 4.0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:Yaganti_Temple_in_Andhra_Pradesh.jpg",
     tag: "Temple heritage",
     intro:
       "A historic temple tucked among rocky hills, known for an unusual sculpted form of Shiva and Parvati.",
@@ -312,7 +336,12 @@ const destinations = [
     type: "Coastal city & port heritage",
     region: "Coast & hills",
     image:
-      "https://www.ambicaseagreen.com/vizag/vizag.jpg",
+      "https://upload.wikimedia.org/wikipedia/commons/5/54/INS_Kursura_%28S20%29_in_2023.jpg",
+    imageFallback:
+      "https://commons.wikimedia.org/wiki/Special:FilePath/INS_Kursura_(S20)_in_2023.jpg?width=1440",
+    imageCredit: "Maina Tudu · CC0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:INS_Kursura_(S20)_in_2023.jpg",
     tag: "Sea & city",
     intro:
       "A lively Bay of Bengal city with beaches, viewpoints, port history and easy access to the Eastern Ghats.",
@@ -339,8 +368,10 @@ const destinations = [
     name: "Borra Caves",
     type: "Limestone caves of Ananthagiri",
     region: "Coast & hills",
-    image:
-      "https://www.borracaves.in/images/5.jpg",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/70/Borra_Cave.jpg/1280px-Borra_Cave.jpg",
+    imageFallback: "https://upload.wikimedia.org/wikipedia/commons/7/70/Borra_Cave.jpg",
+    imageCredit: "Robbygrine · public domain",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Borra_Cave.jpg",
     tag: "Natural wonder",
     intro:
       "A dramatic cave system in the Ananthagiri hills, with sculpted limestone formations and a memorable descent underground.",
@@ -368,6 +399,8 @@ const destinations = [
     type: "Krishna river & temple city",
     region: "River & heritage",
     image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/Prakasam_barrage_view_from_durga_temple_vijayawada.JPG/1280px-Prakasam_barrage_view_from_durga_temple_vijayawada.JPG",
+    imageFallback:
       "https://upload.wikimedia.org/wikipedia/commons/c/ce/Prakasam_barrage_view_from_durga_temple_vijayawada.JPG",
     imageCredit: "రహ్మానుద్దీన్ · CC BY-SA 3.0",
     imageCreditUrl:
@@ -398,10 +431,12 @@ const destinations = [
     type: "Buddhist archaeology & river heritage",
     region: "River & heritage",
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cd/Amaravathi_mahachaitya.jpg/1600px-Amaravathi_mahachaitya.jpg",
-    imageCredit: "IM3847 · CC BY-SA 4.0",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/34/Dhyana_buddha_statue_in_Amaravathi.jpg/1280px-Dhyana_buddha_statue_in_Amaravathi.jpg",
+    imageFallback:
+      "https://upload.wikimedia.org/wikipedia/commons/3/34/Dhyana_buddha_statue_in_Amaravathi.jpg",
+    imageCredit: "iMahesh · CC BY-SA 4.0",
     imageCreditUrl:
-      "https://commons.wikimedia.org/wiki/File:Amaravathi_mahachaitya.jpg",
+      "https://commons.wikimedia.org/wiki/File:Dhyana_buddha_statue_in_Amaravathi.jpg",
     tag: "Ancient Andhra",
     intro:
       "A major archaeological landscape on the Krishna River, where Buddhist art and a much-layered regional history come together.",
@@ -429,7 +464,12 @@ const destinations = [
     type: "Rock-cut architecture",
     region: "River & heritage",
     image:
-      "https://s7ap1.scene7.com/is/image/incredibleindia/undavalli-caves-vijayawada-andhra-pradesh-state-body?qlt=82&ts=1726744169517",
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Undavalli_Caves%2C_Vijayawada%2C_Guntur%2C_Andhra_Pradesh%2C_India_%282018%29_1.jpg/1280px-Undavalli_Caves%2C_Vijayawada%2C_Guntur%2C_Andhra_Pradesh%2C_India_%282018%29_1.jpg",
+    imageFallback:
+      "https://upload.wikimedia.org/wikipedia/commons/4/47/Undavalli_Caves%2C_Vijayawada%2C_Guntur%2C_Andhra_Pradesh%2C_India_%282018%29_1.jpg",
+    imageCredit: "Laxmanvety · CC BY-SA 4.0",
+    imageCreditUrl:
+      "https://commons.wikimedia.org/wiki/File:Undavalli_Caves,_Vijayawada,_Guntur,_Andhra_Pradesh,_India_(2018)_1.jpg",
     tag: "Carved in stone",
     intro:
       "A striking multi-storey rock-cut cave complex overlooking the Krishna River, close to Vijayawada and Amaravati.",
@@ -480,14 +520,622 @@ const destinations = [
   },
 ];
 
+const districtNames = [
+  "Alluri Sitharama Raju", "Anakapalli", "Ananthapuramu", "Annamayya", "Bapatla", "Chittoor",
+  "Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Guntur", "Kakinada", "Krishna",
+  "Kurnool", "Markapuram", "Nandyal", "NTR", "Palnadu", "Parvathipuram Manyam", "Polavaram",
+  "Prakasam", "Sri Potti Sriramulu Nellore", "Sri Sathya Sai", "Srikakulam", "Tirupati",
+  "Visakhapatnam", "Vizianagaram", "West Godavari", "YSR Kadapa",
+];
+
+const weatherLocations = {
+  araku: { name: "Araku Valley", district: "Alluri Sitharama Raju", label: "Alluri Sitharama Raju — Araku Valley", latitude: 18.3273, longitude: 82.8779 },
+  anakapalli: { name: "Anakapalli", district: "Anakapalli", label: "Anakapalli", latitude: 17.6913, longitude: 83.0039 },
+  ananthapuramu: { name: "Anantapur", district: "Ananthapuramu", label: "Ananthapuramu — Anantapur", latitude: 14.6819, longitude: 77.6006 },
+  annamayya: { name: "Rayachoti", district: "Annamayya", label: "Annamayya — Rayachoti", latitude: 14.0572, longitude: 78.7511 },
+  bapatla: { name: "Bapatla", district: "Bapatla", label: "Bapatla", latitude: 15.9044, longitude: 80.4675 },
+  chittoor: { name: "Chittoor", district: "Chittoor", label: "Chittoor", latitude: 13.2172, longitude: 79.1003 },
+  konaseema: { name: "Amalapuram", district: "Dr. B.R. Ambedkar Konaseema", label: "Dr. B.R. Ambedkar Konaseema — Amalapuram", latitude: 16.5787, longitude: 82.0061 },
+  rajahmundry: { name: "Rajamahendravaram", district: "East Godavari", label: "East Godavari — Rajamahendravaram", latitude: 17.0005, longitude: 81.804 },
+  eluru: { name: "Eluru", district: "Eluru", label: "Eluru", latitude: 16.7107, longitude: 81.0952 },
+  guntur: { name: "Guntur", district: "Guntur", label: "Guntur", latitude: 16.3067, longitude: 80.4365 },
+  kakinada: { name: "Kakinada", district: "Kakinada", label: "Kakinada", latitude: 16.9891, longitude: 82.2475 },
+  krishna: { name: "Machilipatnam", district: "Krishna", label: "Krishna — Machilipatnam", latitude: 16.1875, longitude: 81.1389 },
+  kurnool: { name: "Kurnool", district: "Kurnool", label: "Kurnool", latitude: 15.8281, longitude: 78.0373 },
+  markapuram: { name: "Markapuram", district: "Markapuram", label: "Markapuram", latitude: 15.7363, longitude: 79.2694 },
+  nandyal: { name: "Nandyal", district: "Nandyal", label: "Nandyal", latitude: 15.4779, longitude: 78.4836 },
+  vijayawada: { name: "Vijayawada", district: "NTR", label: "NTR — Vijayawada", latitude: 16.5062, longitude: 80.648 },
+  palnadu: { name: "Narasaraopet", district: "Palnadu", label: "Palnadu — Narasaraopet", latitude: 16.2353, longitude: 80.0479 },
+  manyam: { name: "Parvathipuram", district: "Parvathipuram Manyam", label: "Parvathipuram Manyam — Parvathipuram", latitude: 18.7811, longitude: 83.4252 },
+  polavaram: { name: "Rampachodavaram", district: "Polavaram", label: "Polavaram — Rampachodavaram", latitude: 17.4447, longitude: 81.7732 },
+  prakasam: { name: "Ongole", district: "Prakasam", label: "Prakasam — Ongole", latitude: 15.5057, longitude: 80.0499 },
+  nellore: { name: "Nellore", district: "Sri Potti Sriramulu Nellore", label: "Sri Potti Sriramulu Nellore — Nellore", latitude: 14.4426, longitude: 79.9865 },
+  srisathyasai: { name: "Puttaparthi", district: "Sri Sathya Sai", label: "Sri Sathya Sai — Puttaparthi", latitude: 14.1653, longitude: 77.8117 },
+  srikakulam: { name: "Srikakulam", district: "Srikakulam", label: "Srikakulam", latitude: 18.2949, longitude: 83.8938 },
+  tirupati: { name: "Tirupati", district: "Tirupati", label: "Tirupati", latitude: 13.6288, longitude: 79.4192 },
+  vizag: { name: "Visakhapatnam", district: "Visakhapatnam", label: "Visakhapatnam", latitude: 17.6868, longitude: 83.2185 },
+  vizianagaram: { name: "Vizianagaram", district: "Vizianagaram", label: "Vizianagaram", latitude: 18.1133, longitude: 83.397 },
+  westgodavari: { name: "Bhimavaram", district: "West Godavari", label: "West Godavari — Bhimavaram", latitude: 16.5449, longitude: 81.5212 },
+  kadapa: { name: "YSR Kadapa", district: "YSR Kadapa", label: "YSR Kadapa", latitude: 14.4673, longitude: 78.8242 },
+};
+
+const destinationMetadata = {
+  "araku-valley": { district: "Alluri Sitharama Raju", categories: ["forest", "nature", "culture"] },
+  tirupati: { district: "Tirupati", categories: ["temple", "heritage", "nature"] },
+  gandikota: { district: "YSR Kadapa", categories: ["heritage", "nature"] },
+  kurnool: { district: "Kurnool", categories: ["heritage", "culture"] },
+  konaseema: { district: "Dr. B.R. Ambedkar Konaseema", categories: ["river", "nature", "culture", "temple"] },
+  lepakshi: { district: "Sri Sathya Sai", categories: ["heritage", "temple"] },
+  "belum-caves": { district: "Nandyal", categories: ["caves", "nature"] },
+  ahobilam: { district: "Nandyal", categories: ["temple", "forest", "nature"] },
+  srisailam: { district: "Nandyal", categories: ["temple", "forest", "river", "nature"] },
+  "horsley-hills": { district: "Annamayya", categories: ["hills", "forest", "nature"] },
+  yaganti: { district: "Nandyal", categories: ["temple", "heritage", "nature"] },
+  visakhapatnam: { district: "Visakhapatnam", categories: ["beach", "city", "nature"] },
+  "borra-caves": { district: "Alluri Sitharama Raju", categories: ["caves", "nature"] },
+  vijayawada: { district: "NTR", categories: ["city", "heritage", "river", "temple"] },
+  amaravati: { district: "Palnadu", categories: ["buddhist", "heritage", "temple", "river"] },
+  "undavalli-caves": { district: "Guntur", categories: ["caves", "heritage"] },
+  srikurmam: { district: "Srikakulam", categories: ["temple", "heritage"] },
+};
+
+destinations.push(
+  {
+    slug: "bojjannakonda",
+    name: "Bojjannakonda",
+    type: "Buddhist hilltop heritage",
+    region: "Coast & hills",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Rock_cut_Stupas%2C_Bojjannakonda_Monastic_ruins%2C_Andhra_Pradesh.jpg/1280px-Rock_cut_Stupas%2C_Bojjannakonda_Monastic_ruins%2C_Andhra_Pradesh.jpg",
+    imageFallback: "https://upload.wikimedia.org/wikipedia/commons/c/c2/Rock_cut_Stupas%2C_Bojjannakonda_Monastic_ruins%2C_Andhra_Pradesh.jpg",
+    imageCredit: "Adityamadhav83 · CC BY-SA 3.0",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Rock_cut_Stupas,_Bojjannakonda_Monastic_ruins,_Andhra_Pradesh.jpg",
+    tag: "Buddhist heritage",
+    intro: "Two quiet hillocks near Sankaram hold one of North Andhra’s most remarkable early Buddhist archaeological landscapes.",
+    history: "Bojjannakonda and nearby Lingalakonda preserve stupas, chaityas, monasteries and rock-cut caves. The district tourism account describes the site as an important Buddhist complex that flourished across several centuries, from roughly the 4th to 9th centuries CE.",
+    highlights: ["Explore both Bojjannakonda and Lingalakonda hillocks", "Look for the monolithic stupa and sculpted cave panels", "Allow time for the village setting and views from the hill"],
+    bestTime: "October–February is usually more comfortable for the exposed steps and hilltop paths.",
+    timeNeeded: "2–3 hours",
+    gettingThere: "The site is near Sankaram village, a short drive from Anakapalli. Arrange local transport from town and check access before leaving.",
+    visitorTip: "Wear sturdy shoes for uneven stone steps, carry water, and do not climb on or touch archaeological structures.",
+    sourceUrl: "https://anakapalli.ap.gov.in/religious-tourism/",
+    sourceLabel: "Anakapalli district tourism · Bojjannakonda",
+  },
+  {
+    slug: "gooty-fort",
+    name: "Gooty Fort",
+    type: "Hill fort & historic gateways",
+    region: "Rayalaseema",
+    image: "https://s7ap1.scene7.com/is/image/incredibleindia/gooty-fort-anantapur-ap-2-attr-hero?qlt=82&ts=1726744005190",
+    tag: "Fort country",
+    intro: "A dramatic hilltop fort of granite ramparts, layered gateways and sweeping views over Ananthapuramu’s dry plains.",
+    history: "Gooty Fort is one of Andhra Pradesh’s oldest hill forts. Inscriptions point to an early medieval past, while the surviving complex—traditionally described as fifteen connected forts—shows how later rulers strengthened its walls, gateways and water systems.",
+    highlights: ["Climb through the successive gateways and ramparts", "See the citadel, old wells and cliffside pavilion", "Take in the broad views from the hilltop"],
+    bestTime: "November–February for cooler climbing conditions; avoid the hottest part of summer days.",
+    timeNeeded: "Half day",
+    gettingThere: "Gooty is reachable by rail and road; the fort is a short local transfer from town. Confirm access and transport locally.",
+    visitorTip: "The uphill route is steep and exposed, with limited facilities. Carry water, wear grip shoes, and do not go beyond safe edges.",
+    sourceUrl: "https://ananthapuramu.ap.gov.in/tourist-place/gooty-fort/",
+    sourceLabel: "Ananthapuramu district tourism · Gooty Fort",
+  },
+  {
+    slug: "suryalanka-beach",
+    name: "Suryalanka Beach",
+    type: "Bay of Bengal coastline",
+    region: "Coast & hills",
+    image: "https://media.newindianexpress.com/TNIE/import/2023/8/25/original/Suryalanka.jpg?auto=format%2Ccompress&enlarge=true&fit=max&h=675&w=1200",
+    tag: "Coastal pause",
+    intro: "A broad sandy shoreline near Bapatla, popular for sea views, beach walks and a relaxed coastal break.",
+    history: "Suryalanka, also called Bapatla Beach, is one of the district’s best-known natural attractions. Its open shoreline and nearby visitor facilities make it an easy coastal outing from Bapatla town.",
+    highlights: ["Walk the long shoreline and watch the Bay of Bengal", "Catch sunrise or a late-afternoon sea breeze", "Pair the visit with Bapatla town and nearby coastal stops"],
+    bestTime: "November–February is generally more comfortable; check local weather and sea conditions year-round.",
+    timeNeeded: "Half day",
+    gettingThere: "Suryalanka is about 9 km from Bapatla. Use local road transport and confirm return options before heading to the beach.",
+    visitorTip: "Sea conditions can change quickly. Follow lifeguard and police guidance, and do not swim unless local authorities say it is safe.",
+    sourceUrl: "https://bapatla.ap.gov.in/tourist-place/suryalanka-beach/",
+    sourceLabel: "Bapatla district tourism · Suryalanka Beach",
+  },
+  {
+    slug: "kanipakam",
+    name: "Kanipakam Vinayaka Temple",
+    type: "Pilgrimage & temple architecture",
+    region: "Temple towns",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Galipgopuram_of_Kanipakam_temple_%28May_2019%29_10.jpg/1280px-Galipgopuram_of_Kanipakam_temple_%28May_2019%29_10.jpg",
+    imageCredit: "Wikimedia Commons · CC BY-SA 4.0",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Galipgopuram_of_Kanipakam_temple_(May_2019)_10.jpg",
+    tag: "Temple trail",
+    intro: "A major Ganesha shrine near Chittoor, known for its temple tank, tall gopuram and living pilgrimage traditions.",
+    history: "The Sri Varasidhi Vinayaka Swamy Temple is associated with a local legend of a self-manifested Ganesha idol discovered in a well. The shrine has grown into an important pilgrimage stop in the Chittoor region.",
+    highlights: ["Sri Varasidhi Vinayaka Swamy shrine", "The temple’s well and sacred-water tradition", "The carved entrance tower and nearby Chittoor heritage"],
+    bestTime: "October–February is usually more comfortable. Festival days and weekends can be very busy.",
+    timeNeeded: "2–4 hours",
+    gettingThere: "Kanipakam is about 11 km from Chittoor and around 68 km from Tirupati by road.",
+    visitorTip: "Check current darshan timings, dress guidance and queue arrangements through the temple before travelling; photography may be restricted inside.",
+    sourceUrl: "https://chittoor.ap.gov.in/tourist-place/kanipakam/",
+    sourceLabel: "Chittoor district tourism · Kanipakam",
+  },
+  {
+    slug: "rajamahendravaram",
+    name: "Rajamahendravaram",
+    type: "Godavari riverfront & cultural history",
+    region: "River & heritage",
+    image: "https://images.unsplash.com/photo-1701694376119-85ff2f2e6905?auto=format&fit=crop&fm=jpg&q=80&w=1400",
+    tag: "Godavari stories",
+    intro: "A historic river city where Godavari ghats, railway bridges and Telugu literary heritage meet.",
+    history: "Known historically as Rajamahendravaram or Rajahmundry, the city is closely associated with the Godavari and a long tradition of Telugu learning and culture. It is also a gateway to river journeys and sites around the delta.",
+    highlights: ["Walk the Godavari riverfront and ghats", "See the great railway bridges from a safe public viewpoint", "Explore local museums, temples and old-city streets"],
+    bestTime: "November–February is generally pleasant; check river and flood conditions during monsoon months.",
+    timeNeeded: "1–2 days",
+    gettingThere: "Rajamahendravaram is a major rail and road gateway with an airport. Local transport connects the city centre and riverfront.",
+    visitorTip: "Use designated public viewpoints and follow local advice around the river, particularly during high water or boat trips.",
+    sourceUrl: "https://eastgodavari.ap.gov.in/tourist-place/rajamahendravaram/",
+    sourceLabel: "East Godavari district tourism · Rajamahendravaram",
+  },
+  {
+    slug: "dwaraka-tirumala",
+    name: "Dwaraka Tirumala",
+    type: "Hill shrine & pilgrimage town",
+    region: "Temple towns",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Dwaraka_Tirumala_Main_Gopuram_01.jpg/960px-Dwaraka_Tirumala_Main_Gopuram_01.jpg",
+    imageFallback: "https://upload.wikimedia.org/wikipedia/commons/6/69/Dwaraka_Tirumala_Main_Gopuram_01.jpg",
+    imageCredit: "Adityamadhav83 · CC BY-SA 3.0",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Dwaraka_Tirumala_Main_Gopuram_01.jpg",
+    tag: "Chinna Tirupati",
+    intro: "A well-known Venkateswara pilgrimage town in Eluru district, set among low hills and visited throughout the year.",
+    history: "The Sri Venkateswara Swamy shrine is widely known as Dwaraka Tirumala or Chinna Tirupati. Its layered temple traditions and annual festivals make it one of the region’s best-known pilgrimage destinations.",
+    highlights: ["Sri Venkateswara Swamy temple", "The gopuram and hilltop temple setting", "Festival traditions and nearby Eluru-region stops"],
+    bestTime: "November–February is usually more comfortable; major festival periods can bring heavy crowds.",
+    timeNeeded: "Half day",
+    gettingThere: "The temple is in Dwaraka Tirumala mandal of Eluru district. Reach by road from Eluru or nearby railway stations, then use local transport.",
+    visitorTip: "Confirm darshan timings, festival dates and any online booking requirements with the temple before travel.",
+    sourceUrl: "https://www.utsav.gov.in/view-darshan/dwaraka-tirumala-temple-1",
+    sourceLabel: "Ministry of Tourism · Dwaraka Tirumala Temple",
+  },
+  {
+    slug: "hope-island",
+    name: "Hope Island",
+    type: "Island & coastal ecology",
+    region: "Coast & hills",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Satellite_kkd.jpg/1280px-Satellite_kkd.jpg",
+    imageFallback: "https://upload.wikimedia.org/wikipedia/commons/b/bd/Satellite_kkd.jpg",
+    imageCredit: "NASA · public domain",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Satellite_kkd.jpg",
+    tag: "Island escape",
+    intro: "A slender coastal island that shelters Kakinada Bay, with sandy edges, greenery and a distinctive sea-and-lagoon setting.",
+    history: "Hope Island is a natural barrier island formed by Godavari sediment and shaped by coastal processes. Its position helps buffer Kakinada Bay from the open Bay of Bengal, making it both a landscape feature and an ecologically sensitive area.",
+    highlights: ["See the island and bay from an authorised boat trip", "Observe coastal habitats and the changing shoreline", "Combine with Kakinada’s beach and harbourfront"],
+    bestTime: "November–February is generally more comfortable for coastal outings; boat access depends on sea and weather conditions.",
+    timeNeeded: "Half day",
+    gettingThere: "Access is by boat from Kakinada. Confirm current licensed operators, departure points and conditions locally before planning the trip.",
+    visitorTip: "Do not land or explore independently. Use authorised boats, follow safety instructions and avoid disturbing wildlife or fragile coastal areas.",
+    sourceUrl: "https://kakinada.ap.gov.in/tourism/tourist-places/",
+    sourceLabel: "Kakinada district tourism · Hope Island",
+  },
+  {
+    slug: "manginapudi-beach",
+    name: "Manginapudi Beach",
+    type: "Coastal heritage near Machilipatnam",
+    region: "Coast & hills",
+    image: "https://www.beyondyatra.com/assets/images/imgtg/vijayawada/nr/manginapudi_beach_vijayawada_andhra_pradesh_india.jpg",
+    imageFallback: "https://www.hyderabadtourism.travel/images/popular/beaches-near-hyderabad/manginapudi-beach-machilipatnam-near-hyderabad.jpg",
+    tag: "Coast & history",
+    intro: "A distinctive beach near Machilipatnam, where shallow coastal scenery meets the old port town’s maritime story.",
+    history: "The Krishna district tourism portal connects the area with Machilipatnam’s historic port and Dutch-era memories. The beach remains a popular local gathering point and a natural counterpoint to the district’s river and cultural heritage.",
+    highlights: ["Walk the beach and watch the Bay of Bengal", "Visit Machilipatnam’s historic town and local crafts", "Check for current public events and beach facilities"],
+    bestTime: "November–February is generally more comfortable for coastal visits.",
+    timeNeeded: "Half day",
+    gettingThere: "The beach is about 11 km from Machilipatnam. Local road transport is available from town; check return arrangements in advance.",
+    visitorTip: "Do not assume the water is safe for swimming. Follow posted warnings and local authority guidance, and keep away from active port areas.",
+    sourceUrl: "https://krishna.ap.gov.in/eco-tourism/",
+    sourceLabel: "Krishna district tourism · Manginapudi Beach",
+  },
+  {
+    slug: "bhairavakona",
+    name: "Bhairavakona",
+    type: "Rock-cut shrines & forested hills",
+    region: "Rayalaseema",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/7th_to_8th_century_Bhairavakona_rock_cut_cave_temples%2C_Ambavaram_Nallamala_Hills%2C_Andhra_Pradesh_-_1.jpg/1280px-7th_to_8th_century_Bhairavakona_rock_cut_cave_temples%2C_Ambavaram_Nallamala_Hills%2C_Andhra_Pradesh_-_1.jpg",
+    imageFallback: "https://commons.wikimedia.org/wiki/Special:FilePath/7th_to_8th_century_Bhairavakona_rock_cut_cave_temples,_Ambavaram_Nallamala_Hills,_Andhra_Pradesh_-_12.jpg?width=1280",
+    imageCredit: "Ms Sarah Welch · CC BY-SA 4.0",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:7th_to_8th_century_Bhairavakona_rock_cut_cave_temples,_Ambavaram_Nallamala_Hills,_Andhra_Pradesh_-_1.jpg",
+    tag: "Carved in stone",
+    intro: "A remote Nallamala hillside shrine with rock-cut temples, forest scenery and a seasonal waterfall setting.",
+    history: "Bhairavakona is known for eight rock-cut shrines associated with Shiva and Devi traditions. The site’s carvings and mountain setting make it a meaningful heritage stop as well as a nature excursion.",
+    highlights: ["Rock-cut temple facades and sculpted details", "Nallamala hill scenery and seasonal cascades", "A quiet, respectful visit to an active sacred site"],
+    bestTime: "November–February is often more comfortable. Waterfall flow varies with the monsoon, and access may change after heavy rain.",
+    timeNeeded: "Half day",
+    gettingThere: "Bhairavakona is reached by road from the Markapuram region; the last stretch is remote, so arrange transport and check road conditions first.",
+    visitorTip: "Carry water, wear sturdy shoes and avoid the area during unsafe weather. Respect temple customs and do not enter restricted forest areas.",
+    sourceUrl: "https://markapuram.ap.gov.in/places-of-interest/",
+    sourceLabel: "Markapuram district tourism · Bhairavakona",
+  },
+  {
+    slug: "talpagiri-ranganathaswamy",
+    name: "Talpagiri Ranganathaswamy Temple",
+    type: "Pennar river temple heritage",
+    region: "Temple towns",
+    image: "https://i0.wp.com/dakshinapatha.com/wp-content/uploads/2025/05/767f058f-6784-42e6-ae17-fd4733083390.jpeg?resize=1200%2C900&ssl=1",
+    tag: "Living heritage",
+    intro: "A landmark Vishnu temple on the Pennar River, recognised by its tall gopuram and long history in Nellore city.",
+    history: "The district’s religious-tourism account describes the temple as more than 600 years old, with records and later additions reflecting Pallava, Chola and Pandya-era patronage. Its riverfront setting has shaped the temple’s identity and local stories.",
+    highlights: ["The seven-tier eastern gopuram", "The historic shrine and surrounding temple streets", "The Pennar riverfront and nearby Nellore landmarks"],
+    bestTime: "November–February is generally more comfortable. Brahmotsavam and festival dates vary by the Hindu calendar.",
+    timeNeeded: "2–3 hours",
+    gettingThere: "The temple is in Nellore city and is a short road journey from the railway station or bus stand.",
+    visitorTip: "Check worship timings and festival schedules before visiting. Follow temple dress guidance and ask before taking photographs.",
+    sourceUrl: "https://spsnellore.ap.gov.in/religious-tourism/",
+    sourceLabel: "Sri Potti Sriramulu Nellore district tourism · Ranganatha Swamy Temple",
+  },
+  {
+    slug: "kurupam-palace",
+    name: "Kurupam Palace",
+    type: "Regional palace & Manyam heritage",
+    region: "Coast & hills",
+    image: "https://www.mappls.com/place/GBN3WB_1686457807254_0.png",
+    tag: "Manyam heritage",
+    intro: "A heritage stop in the forested north-eastern uplands, introducing visitors to the region’s local royal and tribal histories.",
+    history: "Kurupam Palace is one of the notable heritage places featured by the Parvathipuram Manyam district administration. It offers a contrast to the district’s waterfalls and forest routes, and can be paired with a wider Manyam circuit.",
+    highlights: ["Explore the palace exterior and local setting", "Combine with Parvathipuram and nearby nature stops", "Learn about the region’s communities and local history"],
+    bestTime: "October–February is generally more comfortable for travel in the uplands.",
+    timeNeeded: "1–2 hours",
+    gettingThere: "Plan a road trip from Parvathipuram and confirm local access and opening arrangements before setting out.",
+    visitorTip: "Treat this as a local heritage visit: confirm whether interiors are open, ask permission before photographing residents, and respect private areas.",
+    sourceUrl: "https://parvathipurammanyam.ap.gov.in/gallery/important-places/",
+    sourceLabel: "Parvathipuram Manyam district · Important Places",
+  },
+  {
+    slug: "maredumilli",
+    name: "Maredumilli",
+    type: "Forest streams & Eastern Ghats",
+    region: "Coast & hills",
+    image: "https://images.travelandleisureasia.com/wp-content/uploads/sites/2/2025/03/10190048/MareduMilli.jpg",
+    tag: "Forest escape",
+    intro: "A lush Eastern Ghats getaway of forest roads, streams and waterfalls, now within Polavaram district.",
+    history: "Maredumilli’s landscape is closely connected to the forests and Indigenous communities of the Eastern Ghats. Coffee and rubber plantations, streams and waterfalls form part of the region’s contemporary visitor experience.",
+    highlights: ["Forest drives and seasonal waterfalls", "Coffee-growing landscapes and local food", "Nearby viewpoints and village experiences"],
+    bestTime: "October–February is usually easier for travel. Monsoon greenery is beautiful but can affect roads and waterfall access.",
+    timeNeeded: "1–2 days",
+    gettingThere: "Maredumilli is reached by road from Rajamahendravaram or Rampachodavaram. Start early and arrange a local vehicle for nearby stops.",
+    visitorTip: "Stay on permitted routes, do not litter or feed wildlife, and check forest entry, road and waterfall conditions with local authorities.",
+    sourceUrl: "https://polavaram.ap.gov.in/about-district/administrative-setup/mandal-tahsil/",
+    sourceLabel: "Polavaram district administration · Maredumilli mandal",
+  },
+  {
+    slug: "kothapatnam-beach",
+    name: "Kothapatnam Beach",
+    type: "Ongole coast & Bay of Bengal",
+    region: "Coast & hills",
+    image: "https://d3fphkxyf5o5bm.cloudfront.net/image-resize/format%3Dwebp%2Cw%3D1200/QwRY54Li1HMwD7oNfpCUlDXoeCoIBQmvMzcQfjgz7j",
+    tag: "Coastal pause",
+    intro: "An open sandy beach close to Ongole, suited to a short coastal break and sunset walk.",
+    history: "Kothapatnam is a coastal village in Prakasam district and one of Ongole’s best-known beach outings. The shoreline is also a place for local gatherings, especially during festival periods.",
+    highlights: ["A long walk along the sandy shoreline", "Sunrise and sunset views over the Bay of Bengal", "A relaxed road trip from Ongole"],
+    bestTime: "November–February is generally more comfortable for beach walks.",
+    timeNeeded: "2–4 hours",
+    gettingThere: "The beach is around 18 km from Ongole and is best reached by road. Check local transport and facilities before travelling.",
+    visitorTip: "Swimming and boating are not guaranteed services. Follow local warnings, stay clear of rough surf and confirm any facilities on arrival.",
+    sourceUrl: "https://prakasam.ap.gov.in/tourist-place/kothapatnam-beach/",
+    sourceLabel: "Prakasam district tourism · Kothapatnam Beach",
+  },
+  {
+    slug: "vizianagaram-fort",
+    name: "Vizianagaram Fort",
+    type: "Royal fort & town heritage",
+    region: "Coast & hills",
+    image: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/74/Vizianagaram_fort_walls_02.JPG/1280px-Vizianagaram_fort_walls_02.JPG",
+    imageFallback: "https://commons.wikimedia.org/wiki/Special:FilePath/Vizianagaram_fort_walls_02.JPG?width=1280",
+    imageCredit: "Adityamadhav83 · CC BY-SA 3.0",
+    imageCreditUrl: "https://commons.wikimedia.org/wiki/File:Vizianagaram_fort_walls_02.JPG",
+    tag: "Royal heritage",
+    intro: "A historic town landmark whose gateways, palace buildings and gardens tell the story of the Pusapati rulers.",
+    history: "The district portal records the fort’s foundation in 1713 by Vijayarama Raju I. Its East Gate, Nagaar Khana, Moti Mahal and surrounding royal buildings preserve the shape of Vizianagaram’s princely past.",
+    highlights: ["The East Gate and Nagaar Khana", "Moti Mahal and nearby historic buildings", "The fort gardens and town’s clock tower"],
+    bestTime: "October–February for a more comfortable town walk.",
+    timeNeeded: "2–3 hours",
+    gettingThere: "The fort is in Vizianagaram town and can be reached by local auto or taxi from the railway station and bus stand.",
+    visitorTip: "Some buildings have other current uses and may not be open inside. Check access locally and respect any posted restrictions.",
+    sourceUrl: "https://vizianagaram.ap.gov.in/tourist-spots/",
+    sourceLabel: "Vizianagaram district tourism · Tourist Spots",
+  },
+  {
+    slug: "bhimavaram-someshwara",
+    name: "Bhimavaram Someswara Temple",
+    type: "Pancharama temple heritage",
+    region: "Temple towns",
+    image: "https://tripxl.com/blog/wp-content/uploads/2024/09/Someswara-Janardhana-Temple.jpg",
+    imageFallback: "https://templeconnect.com/wp-content/uploads/2022/06/image_search_1654252095405.jpg",
+    tag: "Temple trail",
+    intro: "A prominent Shiva shrine in Bhimavaram and one of the five Pancharama Kshetras of Andhra Pradesh.",
+    history: "The Gunupudi Someswara Janardhana Swamy Temple is associated with Chalukya Bhima and is a major religious landmark in West Godavari. Temple tradition links the shrine’s Someswara linga with the moon god Chandra.",
+    highlights: ["Someswara Swamy shrine and temple tower", "The sacred temple tank and surrounding complex", "Nearby Palakollu’s Ksheerarama temple"],
+    bestTime: "October–February is generally more comfortable; Mahashivaratri and other festivals are busy.",
+    timeNeeded: "2–3 hours",
+    gettingThere: "Bhimavaram is connected by rail and road; the temple is within town and reachable by local transport.",
+    visitorTip: "Check darshan timings and festival arrangements locally. Respect worship practices and photography restrictions.",
+    sourceUrl: "https://westgodavari.ap.gov.in/religioustourism/",
+    sourceLabel: "West Godavari district tourism · Someswara Janardhana Swamy Temple",
+  },
+);
+
+const newDestinationMetadata = {
+  bojjannakonda: { district: "Anakapalli", categories: ["buddhist", "heritage", "caves", "nature"] },
+  "gooty-fort": { district: "Ananthapuramu", categories: ["heritage", "hills"] },
+  "suryalanka-beach": { district: "Bapatla", categories: ["beach", "nature"] },
+  kanipakam: { district: "Chittoor", categories: ["temple", "heritage"] },
+  rajamahendravaram: { district: "East Godavari", categories: ["river", "heritage", "city", "culture"] },
+  "dwaraka-tirumala": { district: "Eluru", categories: ["temple", "heritage"] },
+  "hope-island": { district: "Kakinada", categories: ["beach", "nature", "wildlife"] },
+  "manginapudi-beach": { district: "Krishna", categories: ["beach", "heritage"] },
+  bhairavakona: { district: "Markapuram", categories: ["temple", "heritage", "forest", "nature"] },
+  "talpagiri-ranganathaswamy": { district: "Sri Potti Sriramulu Nellore", categories: ["temple", "heritage", "river"] },
+  "kurupam-palace": { district: "Parvathipuram Manyam", categories: ["heritage", "culture"] },
+  maredumilli: { district: "Polavaram", categories: ["forest", "nature", "waterfall"] },
+  "kothapatnam-beach": { district: "Prakasam", categories: ["beach", "nature"] },
+  "vizianagaram-fort": { district: "Vizianagaram", categories: ["heritage", "culture"] },
+  "bhimavaram-someshwara": { district: "West Godavari", categories: ["temple", "heritage"] },
+};
+
+Object.entries({ ...destinationMetadata, ...newDestinationMetadata }).forEach(([slug, metadata]) => {
+  const place = destinations.find((item) => item.slug === slug);
+  if (place) Object.assign(place, metadata);
+});
+
+const destinationCategories = [
+  { id: "heritage", label: "Heritage & history" },
+  { id: "temple", label: "Temples" },
+  { id: "beach", label: "Beaches" },
+  { id: "forest", label: "Forests & wildlife" },
+  { id: "caves", label: "Caves" },
+  { id: "nature", label: "Hills & nature" },
+  { id: "river", label: "Rivers & backwaters" },
+  { id: "buddhist", label: "Buddhist heritage" },
+  { id: "culture", label: "Culture" },
+  { id: "hills", label: "Hill country" },
+  { id: "city", label: "City breaks" },
+  { id: "wildlife", label: "Wildlife" },
+  { id: "waterfall", label: "Waterfalls" },
+];
+
+const districtRegionGroups = [
+  {
+    name: "North Andhra",
+    districts: ["Alluri Sitharama Raju", "Anakapalli", "Parvathipuram Manyam", "Srikakulam", "Visakhapatnam", "Vizianagaram"],
+  },
+  {
+    name: "Godavari country",
+    districts: ["Dr. B.R. Ambedkar Konaseema", "East Godavari", "Eluru", "Kakinada", "Polavaram", "West Godavari"],
+  },
+  {
+    name: "Coastal plains",
+    districts: ["Bapatla", "Guntur", "Krishna", "Markapuram", "NTR", "Palnadu", "Prakasam", "Sri Potti Sriramulu Nellore"],
+  },
+  {
+    name: "Rayalaseema",
+    districts: ["Ananthapuramu", "Annamayya", "Chittoor", "Kurnool", "Nandyal", "Sri Sathya Sai", "Tirupati", "YSR Kadapa"],
+  },
+];
+
+const districtExtraAttractions = {
+  "Alluri Sitharama Raju": [
+    { name: "Katiki Waterfalls", note: "A forest-side waterfall outing near the Borra Caves route." },
+    { name: "Chaparai Waterfalls", note: "A rocky stream and picnic landscape near Araku; check water and road conditions." },
+  ],
+  Anakapalli: [
+    { name: "Kondakarla Bird Sanctuary", note: "A lake and wetland known for birdlife and quiet boat rides." },
+    { name: "Sri Nookambika Ammavari Temple", note: "A well-known Anakapalli town temple; check festival crowds and timings." },
+  ],
+  Ananthapuramu: [
+    { name: "Penukonda Fort", note: "A hill fort and historic settlement with gateways and old structures." },
+    { name: "Chintala Venkataramana Temple", note: "A celebrated Vijayanagara-era temple in Tadipatri." },
+  ],
+  Annamayya: [
+    { name: "Tallapaka", note: "The birthplace region associated with the poet-composer Annamacharya." },
+    { name: "Nandalur Soumyanatha Temple", note: "An important historic temple with a large pillared complex." },
+  ],
+  Bapatla: [
+    { name: "Bhavanarayana Swamy Temple", note: "A historic Vishnu temple in Bapatla town." },
+    { name: "Vodarevu Beach", note: "A popular coastal stop south of Bapatla; follow posted sea-safety guidance." },
+  ],
+  Chittoor: [
+    { name: "Mogili Temple", note: "A well-known Shiva temple stop along the Chittoor–Palamaner route." },
+    { name: "Kaigal Waterfalls", note: "A seasonal waterfall in the Koundinya landscape; access can vary with rain." },
+  ],
+  "Dr. B.R. Ambedkar Konaseema": [
+    { name: "Draksharamam Bhimeswara Temple", note: "One of the Pancharama Kshetras, with a notable temple complex." },
+    { name: "Antarvedi Lakshmi Narasimha Temple", note: "A pilgrimage stop near the Godavari estuary and Bay of Bengal." },
+  ],
+  "East Godavari": [
+    { name: "Dowleswaram Barrage", note: "A landmark on the Godavari associated with the region’s irrigation history." },
+    { name: "Kadiyam Nurseries", note: "A broad nursery-growing area near Rajamahendravaram; ask before entering private plots." },
+  ],
+  Eluru: [
+    { name: "Kolleru Lake", note: "A major freshwater lake and bird habitat; check seasonal access and local advisories." },
+    { name: "Guntupalli Buddhist Caves", note: "Rock-cut Buddhist remains in a wooded hill setting; confirm site access." },
+  ],
+  Guntur: [
+    { name: "Uppalapadu Bird Sanctuary", note: "A community-managed wetland known for waterbirds, especially in season." },
+    { name: "Mangalagiri Panakala Narasimha Temple", note: "A hill temple near the Vijayawada–Guntur corridor." },
+  ],
+  Kakinada: [
+    { name: "Coringa Wildlife Sanctuary", note: "A mangrove ecosystem near Kakinada; use authorised visitor facilities." },
+    { name: "Uppada Beach", note: "An open coastal stretch north of Kakinada; follow sea-safety guidance." },
+  ],
+  Krishna: [
+    { name: "Ghantasala Buddhist Site", note: "An archaeological stop associated with the region’s Buddhist heritage." },
+    { name: "Hamsaladeevi", note: "A coastal and river-mouth landscape; check local access and sea conditions." },
+  ],
+  Kurnool: [
+    { name: "Orvakal Rock Garden", note: "A striking landscape of natural rock formations outside Kurnool city." },
+    { name: "Adoni Fort", note: "A large historic fort complex in the western part of the district." },
+  ],
+  Markapuram: [
+    { name: "Cumbum Lake", note: "A historic irrigation lake and scenic stop; water levels vary by season." },
+    { name: "Markapuram Chenna Kesava Temple", note: "A town heritage stop; confirm worship hours locally." },
+  ],
+  Nandyal: [
+    { name: "Mahanandi Temple", note: "A historic Shiva shrine set amid the Nallamala foothills." },
+    { name: "Rollapadu Wildlife Sanctuary", note: "A grassland reserve known for the great Indian bustard; confirm access and sightings." },
+  ],
+  NTR: [
+    { name: "Kanaka Durga Temple", note: "A major hilltop shrine overlooking Vijayawada and the Krishna River." },
+    { name: "Kondapalli Fort", note: "A hill fort near the famous Kondapalli wooden-toy craft village." },
+  ],
+  Palnadu: [
+    { name: "Kotappakonda", note: "A hill and temple destination known for its views and annual festival." },
+    { name: "Ethipothala Falls", note: "A scenic cascade near Nagarjuna Sagar; flow changes with the season." },
+  ],
+  "Parvathipuram Manyam": [
+    { name: "Thotapalli Barrage", note: "A riverside stop on the Nagavali with broad water and hill views." },
+    { name: "Seethampeta", note: "A gateway to Manyam’s upland scenery and local markets; arrange transport ahead." },
+  ],
+  Polavaram: [
+    { name: "Papikondalu", note: "A Godavari river-and-hill landscape; use authorised boats and check current operations." },
+    { name: "Rampachodavaram viewpoints", note: "A base for exploring the Eastern Ghats; ask locally about safe, open routes." },
+  ],
+  Prakasam: [
+    { name: "Chandavaram Buddhist Site", note: "An archaeological hilltop complex with stupas and monastic remains." },
+    { name: "Bhairavakona", note: "Rock-cut shrines in the Nallamala hills; check road and weather conditions." },
+  ],
+  "Sri Potti Sriramulu Nellore": [
+    { name: "Pulicat Lake", note: "A large brackish lagoon and bird habitat shared across the Andhra–Tamil Nadu border." },
+    { name: "Nelapattu Bird Sanctuary", note: "A seasonal birding destination; confirm opening and waterbird activity before visiting." },
+  ],
+  "Sri Sathya Sai": [
+    { name: "Prasanthi Nilayam, Puttaparthi", note: "A spiritual campus and visitor destination; follow current entry guidance." },
+    { name: "Dharmavaram Handloom Market", note: "Look for the district’s silk-weaving tradition and locally made textiles." },
+  ],
+  Srikakulam: [
+    { name: "Arasavalli Sun Temple", note: "A renowned Sun temple with a long history in the Srikakulam region." },
+    { name: "Kalingapatnam Beach", note: "A coastal stop near the Vamsadhara River mouth; check sea conditions." },
+  ],
+  Tirupati: [
+    { name: "Sri Kalahasti Temple", note: "A major Shiva temple known for its Dravidian architecture and pilgrimage traditions." },
+    { name: "Talakona Waterfall", note: "A forest waterfall inside the Sri Venkateswara National Park landscape." },
+  ],
+  Visakhapatnam: [
+    { name: "Simhachalam Temple", note: "A hilltop Varaha Lakshmi Narasimha shrine with distinctive stone architecture." },
+    { name: "Kailasagiri", note: "A hilltop park with panoramic views over the city and coastline." },
+  ],
+  Vizianagaram: [
+    { name: "Ramateertham", note: "A historic hilltop temple and archaeological landscape near Vizianagaram." },
+    { name: "Punyagiri", note: "A hill and temple destination; check local access and weather before travelling." },
+  ],
+  "West Godavari": [
+    { name: "Palakollu Ksheera Ramalingeswara Temple", note: "One of the Pancharama temples, known for its tall gopuram." },
+    { name: "Perupalem Beach", note: "A coastal outing west of Bhimavaram; follow local sea-safety advice." },
+  ],
+  "YSR Kadapa": [
+    { name: "Vontimitta Kodandarama Temple", note: "A major temple complex celebrated for its stone architecture." },
+    { name: "Pushpagiri Temple Complex", note: "A historic group of temples on the Pennar River landscape." },
+  ],
+};
+
+const foodGuides = [
+  {
+    title: "Bamboo chicken",
+    region: "Araku & Maredumilli",
+    icon: "♨",
+    description: "A local specialty cooked inside bamboo, often enjoyed alongside a trip through the Eastern Ghats. Ask local hosts about preparation and availability.",
+    source: "https://www.incredibleindia.gov.in/en/andhra-pradesh/rajahmundry/maredumilli",
+    sourceLabel: "Incredible India · Maredumilli",
+    place: "maredumilli",
+  },
+  {
+    title: "Pesarattu, pulihora & gongura",
+    region: "Andhra favourites",
+    icon: "✦",
+    description: "Try green-gram pesarattu, tangy tamarind rice and gongura pachadi. Recipes and spice levels vary from home to home.",
+    source: "https://www.incredibleindia.gov.in/en/andhra-pradesh/amaravati",
+    sourceLabel: "Incredible India · Amaravati cuisine",
+    place: "amaravati",
+  },
+  {
+    title: "Coastal seafood",
+    region: "Visakhapatnam coast",
+    icon: "≈",
+    description: "Fish, prawns and crab feature on many coastal menus. Ask what is fresh and locally sourced, and mention dietary needs when ordering.",
+    source: "https://www.incredibleindia.gov.in/en/andhra-pradesh/visakhapatnam",
+    sourceLabel: "Incredible India · Visakhapatnam cuisine",
+    place: "visakhapatnam",
+  },
+  {
+    title: "Pootharekulu",
+    region: "Godavari delta sweet",
+    icon: "❋",
+    description: "A delicate paper-thin sweet made from rice starch, traditionally associated with Atreyapuram in the Godavari region.",
+    source: "https://www.incredibleindia.gov.in/en/andhra-pradesh/amaravati",
+    sourceLabel: "Incredible India · Andhra food guide",
+    place: "konaseema",
+  },
+];
+
+const festivalGuides = [
+  {
+    title: "Tirumala Brahmotsavam",
+    region: "Tirupati · devotional traditions",
+    icon: "✺",
+    description: "A major annual celebration at the Sri Venkateswara Temple, with processions and temple rituals. Dates and visitor arrangements vary; check TTD guidance before planning.",
+    source: "https://www.incredibleindia.gov.in/en/andhra-pradesh/tirupati/sri-venkateswara-swamy-vaari-temple",
+    sourceLabel: "Incredible India · Sri Venkateswara Temple",
+    place: "tirupati",
+  },
+  {
+    title: "Lepakshi Utsavalu",
+    region: "Lepakshi · art & culture",
+    icon: "✧",
+    description: "A cultural celebration connected with Lepakshi’s living artistic heritage. Event dates and programmes can change from year to year.",
+    source: "https://www.incredibleindia.gov.in/en/rural-tourism/lepakshi",
+    sourceLabel: "Incredible India · Lepakshi",
+    place: "lepakshi",
+  },
+  {
+    title: "Simhachalam Giri Pradakshina",
+    region: "Visakhapatnam · pilgrimage walk",
+    icon: "⌁",
+    description: "An annual devotional circumambulation of Simhachalam Hill, often observed around Ashadha Purnima. Confirm the current date, route and local arrangements before joining.",
+    source: "https://www.incredibleindia.gov.in/en/festivals-and-events/andhra-pradesh/simhachalam---giri-pradakshina",
+    sourceLabel: "Incredible India · Simhachalam event guide",
+    place: "visakhapatnam",
+  },
+  {
+    title: "Maredumilli Tourism Festival",
+    region: "Forest country · nature & culture",
+    icon: "❋",
+    description: "A tourism celebration showcasing local nature, food and cultural experiences. Festival dates and activities can change; confirm through the official listing.",
+    source: "https://www.incredibleindia.gov.in/en/festivals-and-events/andhra-pradesh/maredumilli-tourism-festival",
+    sourceLabel: "Incredible India · Maredumilli event guide",
+    place: "maredumilli",
+  },
+];
+
+const savedPlacesStorageKey = "andhra-atlas-saved-places";
+let savedPlaceSlugs = new Set();
+try {
+  const storedSavedPlaces = JSON.parse(localStorage.getItem(savedPlacesStorageKey) || "[]");
+  if (Array.isArray(storedSavedPlaces)) savedPlaceSlugs = new Set(storedSavedPlaces);
+} catch {
+  savedPlaceSlugs = new Set();
+}
+savedPlaceSlugs = new Set(
+  [...savedPlaceSlugs].filter((slug) => destinations.some((place) => place.slug === slug)),
+);
+let savedPlacesOnly = false;
+
 const app = document.querySelector("#app");
 app.innerHTML = `
   <header class="topbar">
     <a class="brand" href="#top" aria-label="The Andhra Atlas Guide home"><img class="brand-logo" src="assets/andhra-cultural-emblem.png" alt=""/><span>The Andhra<br><em>Atlas Guide</em></span></a>
     <nav aria-label="Primary navigation">
-      <a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#itineraries">Plan your trip</a><a href="#stories">Travel stories</a>
+      <a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#culture">Food & festivals</a><a href="#itineraries">Plan your trip</a><a href="#stories">Travel stories</a>
     </nav>
-    <div class="nav-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☼</span><span class="theme-label">Light mode</span></button><button class="icon-button" aria-label="Search">⌕</button><button class="menu-button" aria-label="Open menu">☰</button></div>
+    <div class="nav-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☼</span><span class="theme-label">Light mode</span></button><button class="icon-button" id="siteSearchToggle" type="button" aria-label="Search destinations" aria-expanded="false" aria-controls="siteSearchPanel"><span aria-hidden="true">⌕</span></button><button class="menu-button" id="siteMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true">☰</span></button></div>
+    <div class="site-search-panel" id="siteSearchPanel" hidden>
+      <label class="sr-only" for="siteSearchInput">Search places and districts</label>
+      <input id="siteSearchInput" type="search" placeholder="Search a place or district…" autocomplete="off" />
+      <div class="site-search-results" id="siteSearchResults" aria-live="polite"></div>
+    </div>
+    <nav class="site-menu" id="siteMenu" aria-label="Quick navigation" hidden>
+      <a href="#weather">Live weather</a><a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#culture">Food & festivals</a><a href="#itineraries">Plan your trip</a><a href="#stories">Travel stories</a>
+    </nav>
   </header>
 
   <main id="top">
@@ -500,12 +1148,12 @@ app.innerHTML = `
         <p class="hero-copy">From misty coffee slopes to temple bells and sunlit shores, find the Andhra Pradesh that stays with you.</p>
         <div class="hero-controls"><a class="button primary" href="#destinations">Start exploring <span>→</span></a><button class="text-button" id="weatherJump">See today’s weather <span>↓</span></button></div>
       </div>
-      <div class="hero-bottom container"><span>SCROLL TO EXPLORE</span><div class="category-links"><a href="#destinations">Coast</a><a href="#destinations">Hills</a><a href="#experiences">Culture</a><a href="#experiences">Food</a><a href="#itineraries">Road trips</a></div></div>
+      <div class="hero-bottom container"><span>SCROLL TO EXPLORE</span><div class="category-links"><a href="#destinations">Coast</a><a href="#destinations">Hills</a><a href="#experiences">Culture</a><a href="#culture">Food</a><a href="#itineraries">Road trips</a></div></div>
     </section>
 
     <section class="weather-strip" id="weather">
       <div class="container">
-        <div class="weather-layout"><div><p class="eyebrow">RIGHT NOW IN ANDHRA</p><h2>Make room for <span id="weatherSummary">a little sunshine.</span></h2><div class="weather-controls"><label for="weatherPlace">Forecast location<select id="weatherPlace"><option value="vizag">Visakhapatnam</option><option value="vijayawada">Vijayawada</option><option value="tirupati">Tirupati</option><option value="araku">Araku Valley</option><option value="rajahmundry">Rajamahendravaram</option><option value="kakinada">Kakinada</option><option value="kurnool">Kurnool</option></select></label><button id="weatherRefresh" type="button" aria-label="Refresh weather">↻ Refresh</button></div><p class="weather-updated" id="weatherUpdated">Loading current conditions…</p></div><div class="weather-card" aria-live="polite"><div class="weather-symbol" id="weatherIcon">☀</div><div class="weather-main"><strong id="temperature">Loading...</strong><span id="weatherLocation">Visakhapatnam</span></div><div class="weather-stats"><span id="weatherDetail">Fetching live conditions</span><span id="weatherHumidity">Humidity —</span><span id="weatherWind">Wind —</span><span id="weatherRain">Rain —</span></div></div></div>
+        <div class="weather-layout"><div><p class="eyebrow">RIGHT NOW IN ANDHRA</p><h2>Make room for <span id="weatherSummary">a little sunshine.</span></h2><div class="weather-controls"><label for="weatherPlace">Forecast location<select id="weatherPlace">${Object.entries(weatherLocations).map(([key, place]) => `<option value="${key}">${place.label}</option>`).join("")}</select></label><button id="weatherRefresh" type="button" aria-label="Refresh weather">↻ Refresh</button></div><p class="weather-updated" id="weatherUpdated">Loading current conditions…</p></div><div class="weather-card" aria-live="polite"><div class="weather-symbol" id="weatherIcon">☀</div><div class="weather-main"><strong id="temperature">Loading...</strong><span id="weatherLocation">Visakhapatnam</span></div><div class="weather-stats"><span id="weatherDetail">Fetching live conditions</span><span id="weatherHumidity">Humidity —</span><span id="weatherWind">Wind —</span><span id="weatherRain">Rain —</span></div></div></div>
         <div class="forecast-heading"><div><p class="eyebrow dark">THE WEEK AHEAD</p><h3>Seven-day forecast</h3></div><span id="forecastLocationLabel">Visakhapatnam · Andhra Pradesh</span></div>
         <div class="forecast-grid" id="forecastGrid" aria-live="polite"><p class="forecast-loading">Loading the seven-day forecast…</p></div>
         <p class="weather-footnote">Forecasts are model estimates and can change, especially local rain and showers. Check official alerts before travel. Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a>.</p>
@@ -514,19 +1162,43 @@ app.innerHTML = `
 
     <section class="editorial" id="destinations">
       <div class="container">
-        <div class="section-heading"><div><p class="eyebrow dark">CHOOSE YOUR CHAPTER</p><h2>Places that make you<br>want to stay <i>longer.</i></h2></div><p class="section-intro">From Rayalaseema’s forts and caves to the coast and Krishna river heritage. Choose a region, then open any place for its story and practical visitor guide.</p></div>
-        <div class="destination-filters" role="group" aria-label="Filter destinations">
-          <button class="destination-filter" type="button" data-region="all" aria-pressed="true">All places</button>
-          <button class="destination-filter" type="button" data-region="Rayalaseema" aria-pressed="false">Rayalaseema</button>
-          <button class="destination-filter" type="button" data-region="Coast & hills" aria-pressed="false">Coast & hills</button>
-          <button class="destination-filter" type="button" data-region="River & heritage" aria-pressed="false">River & heritage</button>
-          <button class="destination-filter" type="button" data-region="Temple towns" aria-pressed="false">Temple towns</button>
+        <div class="section-heading"><div><p class="eyebrow dark">EXPLORE ALL 28 DISTRICTS</p><h2>Find the Andhra<br>that feels <i>like you.</i></h2></div><p class="section-intro">Start with a district or browse by interest. Every guide opens with a place story, history, practical visitor notes and a Google Maps link.</p></div>
+        <div class="destination-explorer">
+          <div class="destination-browse-bar">
+            <label class="destination-select-label" for="destinationDistrict">Browse by district
+              <select id="destinationDistrict"><option value="all">All 28 districts</option>${districtNames.map((district) => `<option value="${district}">${district}</option>`).join("")}</select>
+            </label>
+            <p class="destination-count" id="destinationCount" aria-live="polite"></p>
+          </div>
+          <p class="destination-category-label">OR CHOOSE WHAT YOU’RE IN THE MOOD FOR</p>
+          <div class="destination-filters" role="group" aria-label="Filter destinations by interest">
+            <button class="destination-filter saved-places-toggle" id="savedPlacesToggle" type="button" aria-pressed="false"><span aria-hidden="true">♡</span> My saved places <span class="saved-places-count" id="savedPlacesCount">0</span></button>
+            <button class="destination-filter" type="button" data-category="all" aria-pressed="true">All interests</button>
+            ${destinationCategories.map((category) => `<button class="destination-filter" type="button" data-category="${category.id}" aria-pressed="false">${category.label}</button>`).join("")}
+          </div>
+          <p class="destination-storage-note">Saved places are kept in this browser on this device—no account needed.</p>
+          <details class="district-explorer">
+            <summary><span>Browse all 28 districts by region</span><span class="district-explorer-hint">Choose a district to filter places</span></summary>
+            <div class="district-region-grid">${districtRegionGroups.map((group) => `<section class="district-region"><h3>${group.name}</h3><div>${group.districts.map((district) => `<button type="button" class="district-chip" data-district-choice="${district}">${district}</button>`).join("")}</div></section>`).join("")}</div>
+          </details>
+          <section class="district-picks" id="districtPicks" aria-live="polite" hidden></section>
         </div>
-        <div class="destination-grid" id="destinationGrid">${destinations.map((place, index) => `<article class="place-card ${index === 0 ? "featured" : ""}" data-destination="${place.slug}" data-region="${place.region}" style="--bg:url('${place.image}')"><span class="place-overlay"></span><div class="place-top"><span>${place.tag}</span><a class="place-card-map" href="${googleMapsDirections(place.name)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${place.name} in Google Maps">Google Maps ↗</a></div><div class="place-copy"><span class="place-type">${place.type}</span><h3 class="place-title">${place.name}</h3><button class="place-discover" type="button" aria-label="Open visitor guide for ${place.name}">Open place guide <span aria-hidden="true">→</span></button></div></article>`).join("")}</div>
+        <div class="destination-grid" id="destinationGrid">${destinations.map((place) => `<article class="place-card" data-destination="${place.slug}" data-district="${place.district}" data-categories="${place.categories.join(" ")}" style="--bg:url('${place.image}')"><span class="place-overlay"></span><div class="place-top"><span>${place.tag}</span><div class="place-card-actions"><button class="place-save" type="button" data-save-place="${place.slug}" aria-pressed="${savedPlaceSlugs.has(place.slug)}" aria-label="${savedPlaceSlugs.has(place.slug) ? `Remove ${place.name} from` : `Save ${place.name} to`} My saved places">${savedPlaceSlugs.has(place.slug) ? "♥" : "♡"}</button><a class="place-card-map" href="${googleMapsDirections(`${place.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${place.name} in Google Maps">Google Maps ↗</a></div></div><div class="place-copy"><span class="place-district">${place.district} District</span><span class="place-type">${place.type}</span><h3 class="place-title">${place.name}</h3><button class="place-discover" type="button" aria-label="Open visitor guide for ${place.name}">Open place guide <span aria-hidden="true">→</span></button></div></article>`).join("")}</div>
+        <p class="destination-empty" id="destinationEmptyState" hidden>No places match that combination yet. Try another district or interest.</p>
       </div>
     </section>
 
     <section class="immersive" id="experiences"><div class="container experience-layout"><div class="experience-photo"></div><div class="experience-copy"><p class="eyebrow light">FIND YOUR RHYTHM</p><h2>Not just places.<br>Ways to feel <i>alive.</i></h2><p>Wake with the fishermen of Kakinada. Share a fragrant plate of bamboo chicken in Araku. Follow an ancient path through Srisailam. The best itineraries leave room for the unplanned.</p><div class="experience-pills"><span>Beach days</span><span>Temple trails</span><span>Local flavours</span><span>Wild escapes</span></div><a class="button primary" href="#itineraries">Explore experiences <span>→</span></a></div></div></section>
+
+    <section class="culture-section" id="culture">
+      <div class="container">
+        <div class="section-heading"><div><p class="eyebrow dark">TASTE & TRADITION</p><h2>Come for the view.<br>Stay for the <i>stories.</i></h2></div><p class="section-intro">Find a local flavour or time your trip around a celebration. Festival dates and programmes can change—check official listings before travelling.</p></div>
+        <div class="culture-heading"><div><p class="eyebrow dark">ON THE TABLE</p><h3>Flavours to look for</h3></div><span>Ask locally; menus and availability vary.</span></div>
+        <div class="culture-grid">${foodGuides.map((guide) => `<article class="culture-card"><span class="culture-icon" aria-hidden="true">${guide.icon}</span><p class="culture-region">${guide.region}</p><h3>${guide.title}</h3><p class="culture-description">${guide.description}</p><div class="culture-card-actions"><button type="button" data-open-guide="${guide.place}">Explore a related place <span aria-hidden="true">→</span></button><a href="${guide.source}" target="_blank" rel="noopener noreferrer">${guide.sourceLabel} ↗</a></div></article>`).join("")}</div>
+        <div class="culture-heading festival-heading"><div><p class="eyebrow dark">ON THE CALENDAR</p><h3>Celebrations worth discovering</h3></div><span>Dates can shift with local calendars.</span></div>
+        <div class="culture-grid">${festivalGuides.map((guide) => `<article class="culture-card festival-card"><span class="culture-icon" aria-hidden="true">${guide.icon}</span><p class="culture-region">${guide.region}</p><h3>${guide.title}</h3><p class="culture-description">${guide.description}</p><div class="culture-card-actions"><button type="button" data-open-guide="${guide.place}">Explore a related place <span aria-hidden="true">→</span></button><a href="${guide.source}" target="_blank" rel="noopener noreferrer">Official event guide ↗</a></div></article>`).join("")}</div>
+      </div>
+    </section>
 
     <section class="itinerary-section" id="itineraries">
       <div class="container">
@@ -539,8 +1211,26 @@ app.innerHTML = `
             <label for="itineraryStart">Where will you start?<select id="itineraryStart"><option>Visakhapatnam</option><option>Vijayawada</option><option>Tirupati</option><option>Kurnool</option><option>Rajamahendravaram</option></select></label>
             <button class="button primary planner-submit" type="submit">Build my itinerary <span>→</span></button>
           </form>
-          <p class="planner-note">Suggested place order only. Check local road conditions and travel times before you set out.</p>
-          <div class="planner-result" id="itineraryResult" aria-live="polite"></div>
+          <p class="planner-note">Suggested place order only. Share a link to reopen this plan or print a copy; check local road conditions and travel times before setting out.</p>
+            <div class="planner-result" id="itineraryResult" aria-live="polite"></div>
+            <section class="trip-kit" id="tripKit" aria-labelledby="tripKitTitle">
+              <div class="trip-kit-heading"><div><p class="eyebrow dark">YOUR TRAVEL CHECKLIST</p><h3 id="tripKitTitle">A little prep goes a long way.</h3><p>Keep essentials and personal trip notes together while you plan.</p></div><button class="trip-kit-reset" id="tripKitReset" type="button">Clear my trip kit</button></div>
+              <div class="trip-kit-progress"><span id="tripKitProgressText">0 of 9 packed</span><progress id="tripKitProgress" max="9" value="0" aria-label="Trip packing checklist progress"></progress></div>
+              <div class="trip-kit-checklist" id="tripKitChecklist">
+                <label><input type="checkbox" data-trip-kit-item="id"><span>Government ID and any required permits</span></label>
+                <label><input type="checkbox" data-trip-kit-item="bookings"><span>Tickets and stay confirmations (save an offline copy)</span></label>
+                <label><input type="checkbox" data-trip-kit-item="contacts"><span>Emergency contacts and a little cash</span></label>
+                <label><input type="checkbox" data-trip-kit-item="shoes"><span>Comfortable walking shoes</span></label>
+                <label><input type="checkbox" data-trip-kit-item="weather"><span>Weather-ready clothes, sunscreen and a hat</span></label>
+                <label><input type="checkbox" data-trip-kit-item="water"><span>Reusable water bottle</span></label>
+                <label><input type="checkbox" data-trip-kit-item="medicine"><span>Personal medicines and basic first aid</span></label>
+                <label><input type="checkbox" data-trip-kit-item="charger"><span>Phone charger and power bank</span></label>
+                <label><input type="checkbox" data-trip-kit-item="rain"><span>Light rain cover or umbrella when the forecast calls for it</span></label>
+              </div>
+              <label class="trip-kit-notes-label" for="tripKitNotes">My trip notes</label>
+              <textarea id="tripKitNotes" rows="4" maxlength="3000" placeholder="Add reminders, places to ask about, or things to book…"></textarea>
+              <p class="trip-kit-storage"><span id="tripKitSaveStatus" aria-live="polite">Saved only in this browser on this device.</span> Don’t store passwords or sensitive personal information here.</p>
+            </section>
         </div>
         <div class="route-grid"><article class="route route-red"><p>04 DAYS · RIVER & CULTURE</p><h3>The Krishna<br>heritage loop</h3><ol><li>Vijayawada</li><li>Undavalli Caves</li><li>Amaravati</li><li>Konaseema</li></ol><button class="route-open" data-plan="Create a warm, practical four-day Andhra Pradesh itinerary covering Vijayawada, Undavalli Caves, Amaravati, and Konaseema. Include travel logic, highlights, food and stay suggestions.">Ask Atlas to refine this route <span>→</span></button></article><article class="route route-image"><div><p>05 DAYS · HILLS & HERITAGE</p><h3>From coast<br>to cloud forest</h3><button class="route-open" data-plan="Create a five-day Andhra Pradesh itinerary with Visakhapatnam, Araku Valley, Borra Caves, and nearby experiences. Include transport, bike rental tips, stays, and best times of day.">Ask Atlas to plan <span>→</span></button></div></article></div>
       </div>
@@ -567,23 +1257,16 @@ function googleMapsDirections(destination, origin) {
   return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
 function addDestinationImageFallbacks() {
-  const fallbackSlugs = {
-    "Coast & hills": "araku-valley",
-    Rayalaseema: "kurnool",
-    "River & heritage": "konaseema",
-    "Temple towns": "tirupati",
-  };
-
   document.querySelectorAll(".place-card").forEach((card) => {
     const place = destinations.find((item) => item.slug === card.dataset.destination);
-    const fallbackPlace = destinations.find((item) => item.slug === fallbackSlugs[place?.region]);
-    if (!place || !fallbackPlace) return;
+    if (!place) return;
 
     const imageCheck = new Image();
     imageCheck.onerror = () => {
+      if (!place.imageFallback) return;
       card.style.setProperty(
         "--bg",
-        `linear-gradient(135deg, rgba(7, 7, 7, .12), rgba(7, 7, 7, .62)), url("${fallbackPlace.image}")`,
+        `url("${place.imageFallback}")`,
       );
     };
     imageCheck.src = place.image;
@@ -592,15 +1275,25 @@ function addDestinationImageFallbacks() {
 addDestinationImageFallbacks();
 document.querySelectorAll(".place-card").forEach((card) =>
   card.addEventListener("click", (event) => {
-    if (event.target.closest("a")) return;
+    if (event.target.closest("a, .place-save")) return;
     const place = destinations.find(
       (item) => item.slug === card.dataset.destination,
     );
     if (!place) return;
+    const districtPairings = destinations
+      .filter((item) => item.slug !== place.slug && item.district === place.district)
+      .slice(0, 3);
+    const pairings = districtPairings.length ? districtPairings : destinations
+      .filter((item) => item.slug !== place.slug && item.region === place.region)
+      .slice(0, 3);
+    const pairingDescription = districtPairings.length
+      ? "More featured place guides in this district."
+      : "These places share the same broad travel region; check road distances before combining stops.";
+    const additionalDistrictPicks = districtExtraAttractions[place.district] || [];
     destinationDetails.innerHTML = `
     <article class="destination-detail">
-      <div class="destination-detail-hero" style="--detail-image:url('${place.image}')">
-        <span class="destination-detail-region">${place.region} · ${place.tag}</span>
+      <div class="destination-detail-hero" style="--detail-image:url('${place.image}');--detail-fallback-image:url('${place.imageFallback || place.image}')">
+        <span class="destination-detail-region">${place.district} District · ${place.region} · ${place.tag}</span>
         <h2 id="destinationTitle">${place.name}</h2>
         <p>${place.intro}</p>
       </div>
@@ -611,8 +1304,10 @@ document.querySelectorAll(".place-card").forEach((card) =>
           <section><h3>What to see</h3><ul>${place.highlights.map((highlight) => `<li>${highlight}</li>`).join("")}</ul></section>
           <section><h3>Getting there</h3><p>${place.gettingThere}</p></section>
         </div>
+        ${additionalDistrictPicks.length ? `<section class="destination-local-picks"><div><h3>More places in ${place.district}</h3><p>These are extra district suggestions; check distances, access and opening details before combining stops.</p></div><div class="destination-local-picks-grid">${additionalDistrictPicks.map((attraction) => `<article><h4>${attraction.name}</h4><p>${attraction.note}</p><a href="${googleMapsDirections(`${attraction.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></article>`).join("")}</div></section>` : ""}
+        ${pairings.length ? `<section class="destination-pairings"><div><h3>${districtPairings.length ? `Explore ${place.district} District` : "Explore the wider region"}</h3><p>${pairingDescription}</p></div><div class="destination-pairing-list">${pairings.map((item) => `<button type="button" data-open-guide="${item.slug}">${item.name}<span>${item.district} District</span></button>`).join("")}</div></section>` : ""}
         <aside class="destination-tip"><strong>Useful to know</strong><p>${place.visitorTip}</p></aside>
-        <a class="destination-map-link" href="${googleMapsDirections(place.name)}" target="_blank" rel="noopener noreferrer" aria-label="Get directions to ${place.name} in Google Maps">Get directions in Google Maps <span aria-hidden="true">↗</span></a>
+        <a class="destination-map-link" href="${googleMapsDirections(`${place.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer" aria-label="Get directions to ${place.name} in Google Maps">Get directions in Google Maps <span aria-hidden="true">↗</span></a>
         <a class="destination-source" href="${place.sourceUrl}" target="_blank" rel="noopener noreferrer">Read the official tourism reference <span aria-hidden="true">↗</span><small>${place.sourceLabel}</small></a>
         ${place.imageCredit ? `<p class="destination-photo-credit">Photo: <a href="${place.imageCreditUrl}" target="_blank" rel="noopener noreferrer">${place.imageCredit}</a></p>` : ""}
       </div>
@@ -626,19 +1321,301 @@ document
 destinationDialog.addEventListener("click", (event) => {
   if (event.target === destinationDialog) destinationDialog.close();
 });
-document.querySelectorAll(".destination-filter").forEach((filter) =>
-  filter.addEventListener("click", () => {
-    const region = filter.dataset.region;
-    document
-      .querySelectorAll(".destination-filter")
-      .forEach((button) =>
-        button.setAttribute("aria-pressed", String(button === filter)),
+const districtFilter = document.querySelector("#destinationDistrict");
+const destinationCount = document.querySelector("#destinationCount");
+const destinationEmptyState = document.querySelector("#destinationEmptyState");
+const interestFilters = [...document.querySelectorAll(".destination-filter[data-category]")];
+const savedPlacesToggle = document.querySelector("#savedPlacesToggle");
+const savedPlacesCount = document.querySelector("#savedPlacesCount");
+const districtPicksPanel = document.querySelector("#districtPicks");
+let activeDestinationCategory = "all";
+
+function renderDistrictPicks(district) {
+  if (district === "all") {
+    districtPicksPanel.hidden = true;
+    districtPicksPanel.innerHTML = "";
+    return;
+  }
+  const attractions = districtExtraAttractions[district] || [];
+  if (!attractions.length) {
+    districtPicksPanel.hidden = true;
+    districtPicksPanel.innerHTML = "";
+    return;
+  }
+  districtPicksPanel.innerHTML = `<div class="district-picks-heading"><div><p class="eyebrow dark">DISTRICT GUIDE</p><h3>More to explore in ${district}</h3><p>Quick picks beyond the featured place guides. Check local access, opening hours and conditions before you go.</p></div><span>${attractions.length} extra stops</span></div><div class="district-picks-grid">${attractions.map((attraction) => `<article class="district-pick"><div><span class="district-pick-icon" aria-hidden="true">✦</span><h4>${attraction.name}</h4><p>${attraction.note}</p></div><a href="${googleMapsDirections(`${attraction.name}, ${district}`)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></article>`).join("")}</div>`;
+  districtPicksPanel.hidden = false;
+}
+
+const tripKitStorageKey = "andhra-atlas-trip-kit";
+const tripKitChecklist = document.querySelector("#tripKitChecklist");
+const tripKitNotes = document.querySelector("#tripKitNotes");
+const tripKitProgress = document.querySelector("#tripKitProgress");
+const tripKitProgressText = document.querySelector("#tripKitProgressText");
+const tripKitSaveStatus = document.querySelector("#tripKitSaveStatus");
+const tripKitItems = [...tripKitChecklist.querySelectorAll("[data-trip-kit-item]")];
+let tripKitState = { checked: {}, notes: "" };
+try {
+  const storedTripKit = JSON.parse(localStorage.getItem(tripKitStorageKey) || "null");
+  if (storedTripKit && typeof storedTripKit === "object") {
+    tripKitState = {
+      checked: storedTripKit.checked && typeof storedTripKit.checked === "object" ? storedTripKit.checked : {},
+      notes: typeof storedTripKit.notes === "string" ? storedTripKit.notes.slice(0, 3000) : "",
+    };
+  }
+} catch {
+  // Keep the checklist usable if browser storage is blocked or unavailable.
+}
+
+function renderTripKit() {
+  tripKitItems.forEach((input) => {
+    input.checked = tripKitState.checked[input.dataset.tripKitItem] === true;
+  });
+  tripKitNotes.value = tripKitState.notes;
+  const packed = tripKitItems.filter((input) => input.checked).length;
+  tripKitProgress.value = packed;
+  tripKitProgressText.textContent = `${packed} of ${tripKitItems.length} packed`;
+}
+
+function saveTripKit(announceSave = true) {
+  tripKitState.checked = Object.fromEntries(
+    tripKitItems.map((input) => [input.dataset.tripKitItem, input.checked]),
+  );
+  tripKitState.notes = tripKitNotes.value.slice(0, 3000);
+  try {
+    localStorage.setItem(tripKitStorageKey, JSON.stringify(tripKitState));
+    if (announceSave) tripKitSaveStatus.textContent = "Saved in this browser on this device.";
+  } catch {
+    if (announceSave) tripKitSaveStatus.textContent = "Browser storage is unavailable; keep a separate copy of these notes.";
+  }
+  const packed = tripKitItems.filter((input) => input.checked).length;
+  tripKitProgress.value = packed;
+  tripKitProgressText.textContent = `${packed} of ${tripKitItems.length} packed`;
+}
+
+tripKitItems.forEach((input) => input.addEventListener("change", saveTripKit));
+tripKitNotes.addEventListener("input", () => saveTripKit(false));
+document.querySelector("#tripKitReset").addEventListener("click", () => {
+  if (!window.confirm("Clear your Trip Kit checklist and notes from this browser?")) return;
+  tripKitState = { checked: {}, notes: "" };
+  renderTripKit();
+  try {
+    localStorage.removeItem(tripKitStorageKey);
+    tripKitSaveStatus.textContent = "Trip kit cleared from this browser.";
+  } catch {
+    tripKitSaveStatus.textContent = "The checklist was reset for this visit, but browser storage could not be cleared.";
+  }
+});
+renderTripKit();
+
+function persistSavedPlaces() {
+  try {
+    localStorage.setItem(savedPlacesStorageKey, JSON.stringify([...savedPlaceSlugs]));
+  } catch {
+    // The shortlist still works for this page view when browser storage is unavailable.
+  }
+}
+
+function updateSavedPlaceButtons() {
+  document.querySelectorAll("[data-save-place]").forEach((button) => {
+    const isSaved = savedPlaceSlugs.has(button.dataset.savePlace);
+    const place = destinations.find((item) => item.slug === button.dataset.savePlace);
+    button.textContent = isSaved ? "♥" : "♡";
+    button.setAttribute("aria-pressed", String(isSaved));
+    if (place) {
+      button.setAttribute(
+        "aria-label",
+        `${isSaved ? "Remove" : "Save"} ${place.name} ${isSaved ? "from" : "to"} My saved places`,
       );
-    document.querySelectorAll(".place-card").forEach((card) => {
-      card.hidden = region !== "all" && card.dataset.region !== region;
-    });
-  }),
+    }
+  });
+  savedPlacesCount.textContent = String(savedPlaceSlugs.size);
+}
+
+function applyDestinationFilters() {
+  const selectedDistrict = districtFilter.value;
+  renderDistrictPicks(selectedDistrict);
+  const visiblePlaces = destinations.filter((place) => {
+    const matchesDistrict = selectedDistrict === "all" || place.district === selectedDistrict;
+    const matchesCategory = activeDestinationCategory === "all" || place.categories.includes(activeDestinationCategory);
+    const matchesSaved = !savedPlacesOnly || savedPlaceSlugs.has(place.slug);
+    return matchesDistrict && matchesCategory && matchesSaved;
+  });
+  document.querySelectorAll(".place-card").forEach((card) => {
+    const matchesDistrict = selectedDistrict === "all" || card.dataset.district === selectedDistrict;
+    const categories = card.dataset.categories.split(" ");
+    const matchesCategory = activeDestinationCategory === "all" || categories.includes(activeDestinationCategory);
+    const matchesSaved = !savedPlacesOnly || savedPlaceSlugs.has(card.dataset.destination);
+    card.hidden = !(matchesDistrict && matchesCategory && matchesSaved);
+  });
+  const coveredDistricts = new Set(visiblePlaces.map((place) => place.district)).size;
+  const interestLabel = destinationCategories.find((item) => item.id === activeDestinationCategory)?.label;
+  const savedLabel = savedPlacesOnly ? " · My saved places" : "";
+  destinationCount.textContent = selectedDistrict === "all"
+    ? `${visiblePlaces.length} place guides across ${coveredDistricts} districts${interestLabel ? ` · ${interestLabel}` : ""}${savedLabel}`
+    : `${visiblePlaces.length} place guide${visiblePlaces.length === 1 ? "" : "s"} in ${selectedDistrict}${interestLabel ? ` · ${interestLabel}` : ""}${savedLabel}`;
+  destinationEmptyState.hidden = visiblePlaces.length > 0;
+  destinationEmptyState.textContent = savedPlacesOnly && savedPlaceSlugs.size === 0
+    ? "Your saved list is empty. Tap the heart on any place you want to remember."
+    : savedPlacesOnly
+      ? "No saved places match these filters. Try another district or interest."
+      : "No places match that combination yet. Try another district or interest.";
+}
+
+districtFilter.addEventListener("change", applyDestinationFilters);
+savedPlacesToggle.addEventListener("click", () => {
+  savedPlacesOnly = !savedPlacesOnly;
+  savedPlacesToggle.setAttribute("aria-pressed", String(savedPlacesOnly));
+  applyDestinationFilters();
+});
+document.querySelector("#destinationGrid").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-save-place]");
+  if (!button) return;
+  const slug = button.dataset.savePlace;
+  if (savedPlaceSlugs.has(slug)) savedPlaceSlugs.delete(slug);
+  else savedPlaceSlugs.add(slug);
+  persistSavedPlaces();
+  updateSavedPlaceButtons();
+  applyDestinationFilters();
+});
+interestFilters.forEach((filter) => filter.addEventListener("click", () => {
+  activeDestinationCategory = filter.dataset.category;
+  interestFilters.forEach((button) => button.setAttribute("aria-pressed", String(button === filter)));
+  applyDestinationFilters();
+}));
+document.querySelectorAll("[data-district-choice]").forEach((button) => {
+  button.addEventListener("click", () => {
+    districtFilter.value = button.dataset.districtChoice;
+    activeDestinationCategory = "all";
+    savedPlacesOnly = false;
+    savedPlacesToggle.setAttribute("aria-pressed", "false");
+    interestFilters.forEach((filter) => filter.setAttribute("aria-pressed", String(filter.dataset.category === "all")));
+    applyDestinationFilters();
+    button.closest("details")?.removeAttribute("open");
+    document.querySelector("#districtPicks").scrollIntoView({ behavior: "smooth", block: "start" });
+  });
+});
+updateSavedPlaceButtons();
+applyDestinationFilters();
+
+function openDestinationGuide(slug) {
+  const card = document.querySelector(`.place-card[data-destination="${slug}"]`);
+  if (!card) return;
+  districtFilter.value = "all";
+  activeDestinationCategory = "all";
+  savedPlacesOnly = false;
+  savedPlacesToggle.setAttribute("aria-pressed", "false");
+  interestFilters.forEach((filter) => filter.setAttribute("aria-pressed", String(filter.dataset.category === "all")));
+  applyDestinationFilters();
+  card.click();
+}
+
+document.querySelector("#culture").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-open-guide]");
+  if (button) openDestinationGuide(button.dataset.openGuide);
+});
+destinationDialog.addEventListener("click", (event) => {
+  const button = event.target.closest("[data-open-guide]");
+  if (!button) return;
+  const slug = button.dataset.openGuide;
+  destinationDialog.close();
+  openDestinationGuide(slug);
+});
+
+const siteSearchToggle = document.querySelector("#siteSearchToggle");
+const siteSearchPanel = document.querySelector("#siteSearchPanel");
+const siteSearchInput = document.querySelector("#siteSearchInput");
+const siteSearchResults = document.querySelector("#siteSearchResults");
+const siteMenuToggle = document.querySelector("#siteMenuToggle");
+const siteMenu = document.querySelector("#siteMenu");
+
+function closeSiteSearch(returnFocus = false) {
+  siteSearchPanel.hidden = true;
+  siteSearchToggle.setAttribute("aria-expanded", "false");
+  if (returnFocus) siteSearchToggle.focus();
+}
+
+function closeSiteMenu(returnFocus = false) {
+  siteMenu.hidden = true;
+  siteMenuToggle.setAttribute("aria-expanded", "false");
+  if (returnFocus) siteMenuToggle.focus();
+}
+
+function renderSiteSearchResults(query = "") {
+  const normalizedQuery = query.trim().toLocaleLowerCase();
+  const matches = normalizedQuery
+    ? destinations.filter((place) =>
+        [place.name, place.district, place.type, place.tag, place.intro]
+          .join(" ")
+          .toLocaleLowerCase()
+          .includes(normalizedQuery),
+      )
+    : destinations.slice(0, 6);
+
+  if (!matches.length) {
+    siteSearchResults.innerHTML =
+      '<p class="site-search-empty">No matching places yet. Try another name or district.</p>';
+    return;
+  }
+
+  siteSearchResults.innerHTML = matches
+    .slice(0, 8)
+    .map(
+      (place) => `<button class="site-search-result" type="button" data-search-place="${place.slug}"><span><strong>${place.name}</strong><small>${place.district} District · ${place.type}</small></span><span aria-hidden="true">↗</span></button>`,
+    )
+    .join("");
+}
+
+siteSearchToggle.addEventListener("click", () => {
+  const shouldOpen = siteSearchPanel.hidden;
+  closeSiteMenu();
+  if (!shouldOpen) {
+    closeSiteSearch();
+    return;
+  }
+  siteSearchPanel.hidden = false;
+  siteSearchToggle.setAttribute("aria-expanded", "true");
+  renderSiteSearchResults(siteSearchInput.value);
+  siteSearchInput.focus();
+});
+siteSearchInput.addEventListener("input", () =>
+  renderSiteSearchResults(siteSearchInput.value),
 );
+siteSearchInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    siteSearchResults.querySelector(".site-search-result")?.click();
+  }
+});
+siteSearchResults.addEventListener("click", (event) => {
+  const result = event.target.closest("[data-search-place]");
+  if (!result) return;
+  const place = destinations.find((item) => item.slug === result.dataset.searchPlace);
+  if (!place) return;
+
+  closeSiteSearch();
+  openDestinationGuide(place.slug);
+});
+
+siteMenuToggle.addEventListener("click", () => {
+  const shouldOpen = siteMenu.hidden;
+  closeSiteSearch();
+  siteMenu.hidden = !shouldOpen;
+  siteMenuToggle.setAttribute("aria-expanded", String(shouldOpen));
+});
+siteMenu.addEventListener("click", (event) => {
+  if (event.target.closest("a")) closeSiteMenu();
+});
+document.addEventListener("pointerdown", (event) => {
+  if (!siteSearchPanel.contains(event.target) && !siteSearchToggle.contains(event.target))
+    closeSiteSearch();
+  if (!siteMenu.contains(event.target) && !siteMenuToggle.contains(event.target))
+    closeSiteMenu();
+});
+document.addEventListener("keydown", (event) => {
+  if (event.key !== "Escape") return;
+  if (!siteSearchPanel.hidden) closeSiteSearch(true);
+  if (!siteMenu.hidden) closeSiteMenu(true);
+});
 
 const itineraryProfiles = {
   coast: { days: [3, 4, 5], defaultDays: 4, start: "Visakhapatnam", stops: ["srikurmam", "visakhapatnam", "borra-caves", "araku-valley"], interests: { nature: ["visakhapatnam", "borra-caves", "araku-valley"], heritage: ["srikurmam", "visakhapatnam"], spiritual: ["srikurmam"] }, buffer: "Add a slower day in Visakhapatnam or Araku for a beach, viewpoint or coffee stop." },
@@ -661,6 +1638,50 @@ function updateItineraryOptions() {
   itineraryStart.value = profile.start;
 }
 
+function createItineraryShareUrl() {
+  const url = new URL(window.location.href);
+  url.searchParams.set("tripRoute", itineraryRoute.value);
+  url.searchParams.set("tripDays", itineraryDays.value);
+  url.searchParams.set("tripInterest", itineraryInterest.value);
+  url.searchParams.set("tripStart", itineraryStart.value);
+  url.hash = "itineraries";
+  return url;
+}
+
+async function shareItinerary() {
+  const url = createItineraryShareUrl();
+  const shareData = {
+    title: "My Andhra Atlas itinerary",
+    text: `My ${itineraryDays.value}-day Andhra Pradesh travel plan`,
+    url: url.href,
+  };
+  const status = document.querySelector("#itineraryActionStatus");
+
+  if (navigator.share) {
+    try {
+      await navigator.share(shareData);
+      return;
+    } catch (error) {
+      if (error.name === "AbortError") return;
+    }
+  }
+  try {
+    if (!navigator.clipboard?.writeText) throw new Error("Clipboard unavailable");
+    await navigator.clipboard.writeText(url.href);
+    status.textContent = "Trip link copied. It will reopen this route on the site.";
+  } catch {
+    window.prompt("Copy this itinerary link to share your trip:", url.href);
+  }
+}
+
+function printItinerary() {
+  const cleanup = () => document.body.classList.remove("printing-itinerary");
+  document.body.classList.add("printing-itinerary");
+  window.addEventListener("afterprint", cleanup, { once: true });
+  window.setTimeout(cleanup, 3000);
+  window.print();
+}
+
 function renderItinerary() {
   const profile = itineraryProfiles[itineraryRoute.value];
   const selectedDays = Number(itineraryDays.value);
@@ -681,7 +1702,7 @@ function renderItinerary() {
   const flexibleNote = flexibleDays > 0 ? `<p class="planner-buffer"><strong>Leave room to breathe:</strong> ${profile.buffer} (${flexibleDays} flexible ${flexibleDays === 1 ? "day" : "days"} included.)</p>` : "";
   const routeLabel = itineraryRoute.options[itineraryRoute.selectedIndex].text;
   const planPrompt = `Make this ${selectedDays}-day ${routeLabel} plan practical for a first-time visitor focused on ${labels[preference]}, starting from ${start}: ${places.map((place) => place.name).join(" → ")}. Suggest sensible overnight bases, local food and realistic pacing. Flag travel times or booking details I should verify.`;
-  itineraryResult.innerHTML = `<div class="planner-result-heading"><div><p class="eyebrow dark">YOUR ${selectedDays}-DAY ROUTE</p><h3>${routeLabel}</h3><p>Starting in ${start} · Focus: ${labels[preference]}</p></div><button class="route-open planner-ask" type="button">Ask Atlas to refine <span>→</span></button></div><div class="planner-days">${dayCards}</div>${flexibleNote}<p class="planner-disclaimer">This is a place-by-place outline, not a confirmed schedule. Temple timings, access, transport and weather can change; confirm before you travel.</p>`;
+  itineraryResult.innerHTML = `<div class="planner-result-heading"><div><p class="eyebrow dark">YOUR ${selectedDays}-DAY ROUTE</p><h3>${routeLabel}</h3><p>Starting in ${start} · Focus: ${labels[preference]}</p></div><div class="planner-result-tools"><button class="planner-action" id="shareItineraryButton" type="button">Share trip ↗</button><button class="planner-action" id="printItineraryButton" type="button">Print plan</button><button class="route-open planner-ask" type="button">Ask Atlas to refine <span>→</span></button></div></div><p class="planner-action-status" id="itineraryActionStatus" aria-live="polite"></p><div class="planner-days">${dayCards}</div>${flexibleNote}<p class="planner-disclaimer">This is a place-by-place outline, not a confirmed schedule. Temple timings, access, transport and weather can change; confirm before you travel.</p>`;
   itineraryResult.hidden = false;
   itineraryResult.querySelector(".planner-ask").addEventListener("click", () => askAtlas(planPrompt));
 }
@@ -704,10 +1725,32 @@ itineraryInterest.addEventListener("change", refreshBuiltItinerary);
 itineraryStart.addEventListener("change", refreshBuiltItinerary);
 itineraryResult.addEventListener("click", (event) => {
   const guideButton = event.target.closest("[data-open-guide]");
-  if (guideButton) document.querySelector(`[data-destination="${guideButton.dataset.openGuide}"]`)?.click();
+  if (guideButton) openDestinationGuide(guideButton.dataset.openGuide);
+  if (event.target.closest("#shareItineraryButton")) shareItinerary();
+  if (event.target.closest("#printItineraryButton")) printItinerary();
 });
 updateItineraryOptions();
 itineraryResult.hidden = true;
+const sharedTripParams = new URLSearchParams(window.location.search);
+const sharedTripRoute = sharedTripParams.get("tripRoute");
+if (sharedTripRoute && Object.prototype.hasOwnProperty.call(itineraryProfiles, sharedTripRoute)) {
+  itineraryRoute.value = sharedTripRoute;
+  updateItineraryOptions();
+  const sharedDays = sharedTripParams.get("tripDays");
+  if ([...itineraryDays.options].some((option) => option.value === sharedDays)) {
+    itineraryDays.value = sharedDays;
+  }
+  const sharedInterest = sharedTripParams.get("tripInterest");
+  if ([...itineraryInterest.options].some((option) => option.value === sharedInterest)) {
+    itineraryInterest.value = sharedInterest;
+  }
+  const sharedStart = sharedTripParams.get("tripStart");
+  if ([...itineraryStart.options].some((option) => option.value === sharedStart)) {
+    itineraryStart.value = sharedStart;
+  }
+  itineraryBuilt = true;
+  renderItinerary();
+}
 
 const codeToWeather = (code) => {
   if (code === 0) return ["☀", "Clear sky"];
@@ -724,19 +1767,6 @@ const codeToWeather = (code) => {
   return ["☁", "Variable"];
 };
 
-const weatherLocations = {
-  vizag: { name: "Visakhapatnam", latitude: 17.6868, longitude: 83.2185 },
-  vijayawada: { name: "Vijayawada", latitude: 16.5062, longitude: 80.648 },
-  tirupati: { name: "Tirupati", latitude: 13.6288, longitude: 79.4192 },
-  araku: { name: "Araku Valley", latitude: 18.3273, longitude: 82.8779 },
-  rajahmundry: {
-    name: "Rajamahendravaram",
-    latitude: 17.0005,
-    longitude: 81.804,
-  },
-  kakinada: { name: "Kakinada", latitude: 16.9891, longitude: 82.2475 },
-  kurnool: { name: "Kurnool", latitude: 15.8281, longitude: 78.0373 },
-};
 const makeWeatherUrl = ({ latitude, longitude }) =>
   `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&forecast_days=7&timezone=Asia%2FKolkata&wind_speed_unit=kmh`;
 const formatDay = (date, index) =>
@@ -755,7 +1785,7 @@ async function loadWeather() {
     `Loading ${place.name} forecast…`;
   document.querySelector("#weatherLocation").textContent = place.name;
   document.querySelector("#forecastLocationLabel").textContent =
-    `${place.name} · Andhra Pradesh`;
+    `${place.name} · ${place.district} District`;
   try {
     const response = await fetch(makeWeatherUrl(place), {
       signal: AbortSignal.timeout(15000),
@@ -931,3 +1961,30 @@ document
       askAtlas(button.dataset.prompt || button.dataset.plan),
     ),
   );
+
+if (
+  "IntersectionObserver" in window &&
+  !window.matchMedia("(prefers-reduced-motion: reduce)").matches
+) {
+  const revealTargets = document.querySelectorAll(
+    "#weather .weather-layout, #weather .forecast-heading, #weather .forecast-grid, .section-heading, .destination-explorer, .place-card, .experience-photo, .experience-copy > *, .culture-heading, .culture-card, .route, .quote-wrap > *",
+  );
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -32px 0px" },
+  );
+
+  revealTargets.forEach((element, index) => {
+    element.classList.add("motion-reveal");
+    if (element.matches(".place-card")) {
+      element.style.setProperty("--reveal-delay", `${(index % 3) * 75}ms`);
+    }
+    revealObserver.observe(element);
+  });
+}
