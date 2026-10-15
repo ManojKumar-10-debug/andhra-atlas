@@ -24,6 +24,10 @@ Forecasts are estimates from numerical weather models, not exact neighborhood me
 
 The free endpoint is for non-commercial use and requires CC BY 4.0 attribution. Open-Meteo currently lists a 10,000-request daily limit for its free API; a commercial tourism or booking product should use its commercial plan. See [Open-Meteo pricing and terms](https://open-meteo.com/en/pricing) and [terms](https://open-meteo.com/en/terms).
 
+## Browser-only trip planner
+
+The itinerary builder uses the destination details already included in `script.js`; it does not need a planner backend. Each suggested day includes curated highlights, a visitor tip, a place guide, and a Google Maps directions link. **Save plan** stores the selected route, duration, interests, and starting city in this browser, and restores them on the next visit. Share links carry those selections in the URL, while **Print plan** uses the browser’s print dialog. Suggested routes are starting points, not confirmed schedules—check local access, opening details, transport, and travel times before setting out.
+
 ## OpenAI trip-planner chat
 
 The floating **Ask Atlas** panel is deliberately designed not to accept an OpenAI key in the browser. To activate it:

@@ -1119,15 +1119,23 @@ savedPlaceSlugs = new Set(
   [...savedPlaceSlugs].filter((slug) => destinations.some((place) => place.slug === slug)),
 );
 let savedPlacesOnly = false;
+const languageStorageKey = "andhra-atlas-language";
+let currentLanguage = "en";
+try {
+  currentLanguage = localStorage.getItem(languageStorageKey) === "te" ? "te" : "en";
+} catch {
+  currentLanguage = "en";
+}
 
 const app = document.querySelector("#app");
 app.innerHTML = `
+  <a class="skip-link" href="#top">Skip to main content</a>
   <header class="topbar">
     <a class="brand" href="#top" aria-label="The Andhra Atlas Guide home"><img class="brand-logo" src="assets/andhra-cultural-emblem.png" alt=""/><span>The Andhra<br><em>Atlas Guide</em></span></a>
     <nav aria-label="Primary navigation">
       <a href="#destinations">Destinations</a><a href="#experiences">Experiences</a><a href="#culture">Food & festivals</a><a href="#itineraries">Plan your trip</a><a href="#stories">Travel stories</a>
     </nav>
-    <div class="nav-actions"><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☼</span><span class="theme-label">Light mode</span></button><button class="icon-button" id="siteSearchToggle" type="button" aria-label="Search destinations" aria-expanded="false" aria-controls="siteSearchPanel"><span aria-hidden="true">⌕</span></button><button class="menu-button" id="siteMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true">☰</span></button></div>
+    <div class="nav-actions"><button class="language-toggle" id="languageToggle" type="button" aria-label="Switch language to Telugu" aria-pressed="false">తెలుగు</button><button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light mode" aria-pressed="false"><span id="themeIcon" aria-hidden="true">☼</span><span class="theme-label">Light mode</span></button><button class="icon-button" id="siteSearchToggle" type="button" aria-label="Search destinations" aria-expanded="false" aria-controls="siteSearchPanel"><span aria-hidden="true">⌕</span></button><button class="menu-button" id="siteMenuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="siteMenu"><span aria-hidden="true">☰</span></button></div>
     <div class="site-search-panel" id="siteSearchPanel" hidden>
       <label class="sr-only" for="siteSearchInput">Search places and districts</label>
       <input id="siteSearchInput" type="search" placeholder="Search a place or district…" autocomplete="off" />
@@ -1138,13 +1146,13 @@ app.innerHTML = `
     </nav>
   </header>
 
-  <main id="top">
+  <main id="top" tabindex="-1">
     <section class="hero">
       <div class="hero-image" role="img" aria-label="A coastal view near Andhra Pradesh"></div>
       <div class="hero-shade"></div>
       <div class="hero-content container">
         <p class="eyebrow light">INDIA'S EASTERN COAST, UNFOLDED</p>
-        <h1>Every turn tells<br>an <i>Andhra</i> story.</h1>
+        <h1 id="heroTitle">Every turn tells<br>an <i>Andhra</i> story.</h1>
         <p class="hero-copy">From misty coffee slopes to temple bells and sunlit shores, find the Andhra Pradesh that stays with you.</p>
         <div class="hero-controls"><a class="button primary" href="#destinations">Start exploring <span>→</span></a><button class="text-button" id="weatherJump">See today’s weather <span>↓</span></button></div>
       </div>
@@ -1153,9 +1161,10 @@ app.innerHTML = `
 
     <section class="weather-strip" id="weather">
       <div class="container">
-        <div class="weather-layout"><div><p class="eyebrow">RIGHT NOW IN ANDHRA</p><h2>Make room for <span id="weatherSummary">a little sunshine.</span></h2><div class="weather-controls"><label for="weatherPlace">Forecast location<select id="weatherPlace">${Object.entries(weatherLocations).map(([key, place]) => `<option value="${key}">${place.label}</option>`).join("")}</select></label><button id="weatherRefresh" type="button" aria-label="Refresh weather">↻ Refresh</button></div><p class="weather-updated" id="weatherUpdated">Loading current conditions…</p></div><div class="weather-card" aria-live="polite"><div class="weather-symbol" id="weatherIcon">☀</div><div class="weather-main"><strong id="temperature">Loading...</strong><span id="weatherLocation">Visakhapatnam</span></div><div class="weather-stats"><span id="weatherDetail">Fetching live conditions</span><span id="weatherHumidity">Humidity —</span><span id="weatherWind">Wind —</span><span id="weatherRain">Rain —</span></div></div></div>
+        <div class="weather-layout"><div><p class="eyebrow">RIGHT NOW IN ANDHRA</p><h2>Make room for <span id="weatherSummary">a little sunshine.</span></h2><div class="weather-controls"><label for="weatherPlace">Forecast location<select id="weatherPlace">${Object.entries(weatherLocations).map(([key, place]) => `<option value="${key}">${place.label}</option>`).join("")}</select></label><button id="weatherRefresh" type="button" aria-label="Refresh weather">↻ Refresh</button></div><p class="weather-updated" id="weatherUpdated" aria-live="polite">Loading current conditions…</p></div><div class="weather-card" aria-live="polite"><div class="weather-symbol" id="weatherIcon" aria-hidden="true">☀</div><div class="weather-main"><strong id="temperature">Loading...</strong><span id="weatherLocation">Visakhapatnam</span></div><div class="weather-stats"><span id="weatherDetail">Fetching live conditions</span><span id="weatherHumidity">Humidity —</span><span id="weatherWind">Wind —</span><span id="weatherRain">Rain —</span></div></div></div>
         <div class="forecast-heading"><div><p class="eyebrow dark">THE WEEK AHEAD</p><h3>Seven-day forecast</h3></div><span id="forecastLocationLabel">Visakhapatnam · Andhra Pradesh</span></div>
-        <div class="forecast-grid" id="forecastGrid" aria-live="polite"><p class="forecast-loading">Loading the seven-day forecast…</p></div>
+        <div class="forecast-grid" id="forecastGrid" aria-label="Seven-day forecast" aria-live="polite" tabindex="0"><p class="forecast-loading">Loading the seven-day forecast…</p></div>
+        <aside class="weather-advice" id="weatherAdvice" aria-live="polite" hidden></aside>
         <p class="weather-footnote">Forecasts are model estimates and can change, especially local rain and showers. Check official alerts before travel. Weather data by <a href="https://open-meteo.com/" target="_blank" rel="noreferrer">Open-Meteo</a>.</p>
       </div>
     </section>
@@ -1183,7 +1192,7 @@ app.innerHTML = `
           </details>
           <section class="district-picks" id="districtPicks" aria-live="polite" hidden></section>
         </div>
-        <div class="destination-grid" id="destinationGrid">${destinations.map((place) => `<article class="place-card" data-destination="${place.slug}" data-district="${place.district}" data-categories="${place.categories.join(" ")}" style="--bg:url('${place.image}')"><span class="place-overlay"></span><div class="place-top"><span>${place.tag}</span><div class="place-card-actions"><button class="place-save" type="button" data-save-place="${place.slug}" aria-pressed="${savedPlaceSlugs.has(place.slug)}" aria-label="${savedPlaceSlugs.has(place.slug) ? `Remove ${place.name} from` : `Save ${place.name} to`} My saved places">${savedPlaceSlugs.has(place.slug) ? "♥" : "♡"}</button><a class="place-card-map" href="${googleMapsDirections(`${place.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${place.name} in Google Maps">Google Maps ↗</a></div></div><div class="place-copy"><span class="place-district">${place.district} District</span><span class="place-type">${place.type}</span><h3 class="place-title">${place.name}</h3><button class="place-discover" type="button" aria-label="Open visitor guide for ${place.name}">Open place guide <span aria-hidden="true">→</span></button></div></article>`).join("")}</div>
+        <div class="destination-grid" id="destinationGrid">${destinations.map((place) => `<article class="place-card" data-destination="${place.slug}" data-district="${place.district}" data-categories="${place.categories.join(" ")}" style="--bg:url('${place.image}')"><span class="place-overlay"></span><div class="place-top"><span>${place.tag}</span><div class="place-card-actions"><button class="place-save" type="button" data-save-place="${place.slug}" aria-pressed="${savedPlaceSlugs.has(place.slug)}" aria-label="${savedPlaceSlugs.has(place.slug) ? `Remove ${place.name} from` : `Save ${place.name} to`} My saved places">${savedPlaceSlugs.has(place.slug) ? "♥" : "♡"}</button><a class="place-card-map" href="${googleMapsDirections(`${place.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer" aria-label="Open ${place.name} in Google Maps">Google Maps ↗</a></div></div><div class="place-copy"><span class="place-district">${place.district} District</span><span class="place-type">${place.type}</span><h3 class="place-title">${place.name}</h3><div class="place-card-cta"><button class="place-discover" type="button" aria-label="Open visitor guide for ${place.name}">Open place guide <span aria-hidden="true">→</span></button><button class="place-add-to-trip" type="button" data-add-to-trip="${place.slug}" aria-pressed="false">＋ Add to trip</button></div></div></article>`).join("")}</div>
         <p class="destination-empty" id="destinationEmptyState" hidden>No places match that combination yet. Try another district or interest.</p>
       </div>
     </section>
@@ -1204,6 +1213,12 @@ app.innerHTML = `
       <div class="container">
         <div class="section-heading"><div><p class="eyebrow dark">MAKE IT YOUR OWN</p><h2>Your first Andhra<br>adventure starts <i>here.</i></h2></div><p class="section-intro">Choose a regional circuit, how long you have, and what you enjoy. We’ll shape a day-by-day starting point you can fine-tune.</p></div>
         <div class="planner-panel">
+          <section class="custom-trip-builder" aria-labelledby="customTripTitle">
+            <div class="custom-trip-heading"><div><p class="eyebrow dark">YOUR CUSTOM JOURNEY</p><h3 id="customTripTitle">Build your own trip</h3><p>Add places from any destination card or its full guide. Reorder stops and your trip stays saved in this browser.</p></div><div class="custom-trip-tools"><span id="customTripCount" aria-live="polite">0 stops</span><a id="customTripMap" href="#" target="_blank" rel="noopener noreferrer" hidden>Map this trip ↗</a><button id="customTripClear" type="button">Clear trip</button></div></div>
+            <p class="custom-trip-empty" id="customTripEmpty">Your trip is empty for now. Explore the destination cards and add places you like.</p>
+            <ol class="custom-trip-stops" id="customTripStops" aria-label="Your custom trip stops"></ol>
+            <p class="custom-trip-status" id="customTripStatus" aria-live="polite">Saved only in this browser on this device.</p>
+          </section>
           <form class="planner-controls" id="itineraryForm">
             <label for="itineraryRoute">Choose a regional route<select id="itineraryRoute"><option value="coast">Visakhapatnam & Eastern Ghats</option><option value="rayalaseema">Rayalaseema forts & hills</option><option value="river">Vijayawada & Godavari heritage</option><option value="tirupati">Tirupati temple visit</option></select></label>
             <label for="itineraryDays">How many days?<select id="itineraryDays"></select></label>
@@ -1230,6 +1245,23 @@ app.innerHTML = `
               <label class="trip-kit-notes-label" for="tripKitNotes">My trip notes</label>
               <textarea id="tripKitNotes" rows="4" maxlength="3000" placeholder="Add reminders, places to ask about, or things to book…"></textarea>
               <p class="trip-kit-storage"><span id="tripKitSaveStatus" aria-live="polite">Saved only in this browser on this device.</span> Don’t store passwords or sensitive personal information here.</p>
+            <section class="trip-budget" id="tripBudget" aria-labelledby="tripBudgetTitle">
+                <div class="trip-budget-heading"><div><p class="eyebrow dark">KEEP SPENDING IN SIGHT</p><h4 id="tripBudgetTitle">Trip budget</h4><p>Enter a rough limit and update costs as you plan.</p></div><button class="trip-kit-reset" id="budgetReset" type="button">Clear budget</button></div>
+                <label class="budget-limit-label" for="budgetLimit">Total budget <span>INR (₹)</span><input id="budgetLimit" type="number" min="0" step="500" inputmode="numeric" placeholder="e.g. 25000" /></label>
+                <div class="budget-categories">
+                  <label>Transport<input data-budget-category="transport" type="number" min="0" step="100" inputmode="numeric" placeholder="₹ 0" /></label>
+                  <label>Stay<input data-budget-category="stay" type="number" min="0" step="100" inputmode="numeric" placeholder="₹ 0" /></label>
+                  <label>Food<input data-budget-category="food" type="number" min="0" step="100" inputmode="numeric" placeholder="₹ 0" /></label>
+                  <label>Activities<input data-budget-category="activities" type="number" min="0" step="100" inputmode="numeric" placeholder="₹ 0" /></label>
+                  <label>Other<input data-budget-category="other" type="number" min="0" step="100" inputmode="numeric" placeholder="₹ 0" /></label>
+                </div>
+                <div class="budget-summary" id="budgetSummary" aria-live="polite">
+                  <div><span>Estimated spend</span><strong id="budgetSpent">₹0</strong></div><div><span>Remaining</span><strong id="budgetRemaining">Set a budget</strong></div>
+                </div>
+                <div class="budget-meter-wrap"><progress id="budgetMeter" max="100" value="0" aria-label="Budget used"></progress><span id="budgetMeterText">Add a budget to see your progress.</span></div>
+                <p class="budget-trip-context" id="budgetTripContext" aria-live="polite">Your custom trip currently has 0 stops.</p>
+                <p class="budget-note">A personal estimate only—prices vary. This tracker stays in this browser and does not process payments.</p>
+              </section>
             </section>
         </div>
         <div class="route-grid"><article class="route route-red"><p>04 DAYS · RIVER & CULTURE</p><h3>The Krishna<br>heritage loop</h3><ol><li>Vijayawada</li><li>Undavalli Caves</li><li>Amaravati</li><li>Konaseema</li></ol><button class="route-open" data-plan="Create a warm, practical four-day Andhra Pradesh itinerary covering Vijayawada, Undavalli Caves, Amaravati, and Konaseema. Include travel logic, highlights, food and stay suggestions.">Ask Atlas to refine this route <span>→</span></button></article><article class="route route-image"><div><p>05 DAYS · HILLS & HERITAGE</p><h3>From coast<br>to cloud forest</h3><button class="route-open" data-plan="Create a five-day Andhra Pradesh itinerary with Visakhapatnam, Araku Valley, Borra Caves, and nearby experiences. Include transport, bike rental tips, stays, and best times of day.">Ask Atlas to plan <span>→</span></button></div></article></div>
@@ -1240,11 +1272,294 @@ app.innerHTML = `
   </main>
 
   <button class="side-tab side-left" type="button" onclick="document.querySelector('#itineraries').scrollIntoView({behavior:'smooth'})">PLAN A TRIP</button>
-  <button class="side-tab side-right" id="chatToggle">ASK ATLAS ✦</button>
-  <section class="chat-panel" id="chatPanel" aria-label="Atlas trip planner" aria-hidden="true"><div class="chat-head"><div><span class="chat-dot">✦</span><div><strong>Ask Atlas</strong><small>Your Andhra travel companion</small></div></div><button id="chatClose" aria-label="Close chat">×</button></div><div class="chat-messages" id="chatMessages"><div class="message bot">Hello! I can help shape your Andhra journey. Ask for a route, a stay area, food stop, or rental tip.</div><div class="quick-prompts"><button data-prompt="Plan a four-day Andhra Pradesh trip for a first-time visitor.">4-day trip</button><button data-prompt="Where should I stay in Visakhapatnam?">Stay in Vizag</button><button data-prompt="How can I rent a bike in Andhra Pradesh safely?">Bike rentals</button></div></div><form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Ask about your trip..." autocomplete="off"/><button aria-label="Send question">↑</button></form><p class="chat-note">AI suggestions are for planning—confirm availability before booking.</p></section>
+  <button class="side-tab side-right" id="chatToggle" type="button" aria-expanded="false" aria-controls="chatPanel">ASK ATLAS ✦</button>
+  <section class="chat-panel" id="chatPanel" aria-label="Atlas trip planner" aria-hidden="true" inert><div class="chat-head"><div><span class="chat-dot" aria-hidden="true">✦</span><div><strong>Ask Atlas</strong><small>Your Andhra travel companion</small></div></div><button id="chatClose" type="button" aria-label="Close chat">×</button></div><div class="chat-messages" id="chatMessages" aria-live="polite" aria-relevant="additions text"><div class="message bot">Hello! I can help shape your Andhra journey. Ask for a route, a stay area, food stop, or rental tip.</div><div class="quick-prompts"><button type="button" data-prompt="Plan a four-day Andhra Pradesh trip for a first-time visitor.">4-day trip</button><button type="button" data-prompt="Where should I stay in Visakhapatnam?">Stay in Vizag</button><button type="button" data-prompt="How can I rent a bike in Andhra Pradesh safely?">Bike rentals</button></div></div><form class="chat-form" id="chatForm"><input id="chatInput" placeholder="Ask about your trip..." autocomplete="off"/><button type="submit" aria-label="Send question">↑</button></form><p class="chat-note">AI suggestions are for planning—confirm availability before booking.</p></section>
   <dialog class="destination-dialog" id="destinationDialog" aria-labelledby="destinationTitle"><button class="destination-close" id="destinationClose" type="button" aria-label="Close place guide">×</button><div id="destinationDetails"></div></dialog>
   <footer><div class="container footer-inner"><a class="brand" href="#top"><img class="brand-logo" src="assets/andhra-cultural-emblem.png" alt=""/><span>The Andhra<br><em>Atlas Guide</em></span></a><p>Made for unhurried journeys across Andhra Pradesh.</p><span>© 2026</span></div></footer>
 `;
+
+const teluguText = {
+  "Skip to main content": "ప్రధాన విషయానికి వెళ్లండి",
+  "Primary navigation": "ప్రధాన నావిగేషన్",
+  "Destinations": "ప్రదేశాలు",
+  "Experiences": "అనుభవాలు",
+  "Food & festivals": "ఆహారం & పండుగలు",
+  "Plan your trip": "మీ ప్రయాణాన్ని ప్లాన్ చేయండి",
+  "Travel stories": "ప్రయాణ కథలు",
+  "Live weather": "ప్రస్తుత వాతావరణం",
+  "Search places and districts": "ప్రదేశాలు, జిల్లాలను వెతకండి",
+  "Search a place or district…": "ప్రదేశం లేదా జిల్లాను వెతకండి…",
+  "All 28 districts": "మొత్తం 28 జిల్లాలు",
+  "Alluri Sitharama Raju": "అల్లూరి సీతారామరాజు",
+  "Anakapalli": "అనకాపల్లి",
+  "Ananthapuramu": "అనంతపురం",
+  "Annamayya": "అన్నమయ్య",
+  "Bapatla": "బాపట్ల",
+  "Chittoor": "చిత్తూరు",
+  "Dr. B.R. Ambedkar Konaseema": "డా. బి.ఆర్. అంబేద్కర్ కోనసీమ",
+  "East Godavari": "తూర్పు గోదావరి",
+  "Eluru": "ఏలూరు",
+  "Guntur": "గుంటూరు",
+  "Kakinada": "కాకినాడ",
+  "Krishna": "కృష్ణా",
+  "Kurnool": "కర్నూలు",
+  "Markapuram": "మార్కాపురం",
+  "Nandyal": "నంద్యాల",
+  "NTR": "ఎన్టీఆర్",
+  "Palnadu": "పల్నాడు",
+  "Parvathipuram Manyam": "పార్వతీపురం మన్యం",
+  "Polavaram": "పోలవరం",
+  "Prakasam": "ప్రకాశం",
+  "Sri Potti Sriramulu Nellore": "శ్రీ పొట్టి శ్రీరాములు నెల్లూరు",
+  "Sri Sathya Sai": "శ్రీ సత్యసాయి",
+  "Srikakulam": "శ్రీకాకుళం",
+  "Tirupati": "తిరుపతి",
+  "Visakhapatnam": "విశాఖపట్నం",
+  "Vizianagaram": "విజయనగరం",
+  "West Godavari": "పశ్చిమ గోదావరి",
+  "YSR Kadapa": "వైఎస్ఆర్ కడప",
+  "Araku Valley": "అరకు లోయ",
+  "Anantapur": "అనంతపురం",
+  "Rayachoti": "రాయచోటి",
+  "Amalapuram": "అమలాపురం",
+  "Rajamahendravaram": "రాజమహేంద్రవరం",
+  "Machilipatnam": "మచిలీపట్నం",
+  "Narasaraopet": "నరసరావుపేట",
+  "Parvathipuram": "పార్వతీపురం",
+  "Rampachodavaram": "రంపచోడవరం",
+  "Ongole": "ఒంగోలు",
+  "Nellore": "నెల్లూరు",
+  "Puttaparthi": "పుట్టపర్తి",
+  "Kadapa": "కడప",
+  "Browse by district": "జిల్లా వారీగా చూడండి",
+  "OR CHOOSE WHAT YOU’RE IN THE MOOD FOR": "లేదా మీ ఆసక్తిని ఎంచుకోండి",
+  "My saved places": "నేను దాచిన ప్రదేశాలు",
+  "All interests": "అన్ని ఆసక్తులు",
+  "Heritage & history": "వారసత్వం & చరిత్ర",
+  "Temples": "ఆలయాలు",
+  "Beaches": "బీచ్‌లు",
+  "Forests & wildlife": "అడవులు & వన్యప్రాణులు",
+  "Caves": "గుహలు",
+  "Hills & nature": "కొండలు & ప్రకృతి",
+  "Rivers & backwaters": "నదులు & బ్యాక్‌వాటర్స్",
+  "Buddhist heritage": "బౌద్ధ వారసత్వం",
+  "Hill country": "కొండ ప్రాంతాలు",
+  "City breaks": "నగర విహారం",
+  "Wildlife": "వన్యప్రాణులు",
+  "Waterfalls": "జలపాతాలు",
+  "Saved places are kept in this browser on this device—no account needed.": "మీరు దాచిన ప్రదేశాలు ఈ పరికరంలోని బ్రౌజర్‌లోనే ఉంటాయి—ఖాతా అవసరం లేదు.",
+  "Browse all 28 districts by region": "ప్రాంతాల వారీగా 28 జిల్లాలను చూడండి",
+  "Choose a district to filter places": "ప్రదేశాలను వడపోసేందుకు జిల్లాను ఎంచుకోండి",
+  "Loading current conditions…": "ప్రస్తుత వాతావరణాన్ని లోడ్ చేస్తున్నాం…",
+  "Fetching live conditions": "ప్రస్తుత పరిస్థితులను పొందుతున్నాం",
+  "Forecast location": "వాతావరణ ప్రదేశం",
+  "↻ Refresh": "↻ మళ్లీ పొందండి",
+  "Seven-day forecast": "ఏడు రోజుల వాతావరణ అంచనా",
+  "THE WEEK AHEAD": "వచ్చే వారం",
+  "RIGHT NOW IN ANDHRA": "ఆంధ్రలో ఇప్పటి వాతావరణం",
+  "Make room for ": "స్వాగతించండి: ",
+  "Make room for": "స్వాగతించండి:",
+  "a little sunshine.": "కొద్దిపాటి ఎండ.",
+  "Today's weather": "నేటి వాతావరణం",
+  "See today’s weather ": "నేటి వాతావరణాన్ని చూడండి ",
+  "Forecasts are model estimates and can change, especially local rain and showers. Check official alerts before travel. Weather data by ": "వాతావరణ అంచనాలు మారవచ్చు, ముఖ్యంగా స్థానిక వర్షాల విషయంలో. ప్రయాణానికి ముందు అధికారిక హెచ్చరికలను చూడండి. వాతావరణ సమాచారం: ",
+  "EXPLORE ALL 28 DISTRICTS": "28 జిల్లాలన్నీ అన్వేషించండి",
+  "Find the Andhra": "ఆంధ్రను కనుగొనండి",
+  "that feels ": "మీకు నచ్చిన ",
+  "like you.": "అనుభూతిని.",
+  "Start with a district or browse by interest. Every guide opens with a place story, history, practical visitor notes and a Google Maps link.": "జిల్లా లేదా ఆసక్తితో ప్రారంభించండి. ప్రతి గైడ్‌లో ప్రదేశ కథ, చరిత్ర, సందర్శకుల సమాచారం, గూగుల్ మ్యాప్స్ లింక్ ఉంటాయి.",
+  "A coastal view near Andhra Pradesh": "ఆంధ్రప్రదేశ్ సమీపంలోని తీర దృశ్యం",
+  "Start exploring ": "అన్వేషణ ప్రారంభించండి ",
+  "Coast": "తీరం",
+  "Hills": "కొండలు",
+  "Culture": "సంస్కృతి",
+  "Food": "ఆహారం",
+  "Road trips": "రోడ్ ట్రిప్పులు",
+  "INDIA'S EASTERN COAST, UNFOLDED": "భారత తూర్పు తీరం — కొత్తగా తెలుసుకోండి",
+  "Every turn tells": "ప్రతి మలుపూ",
+  "an ": "ఒక ",
+  " story.": " కథ చెబుతుంది.",
+  "From misty coffee slopes to temple bells and sunlit shores, find the Andhra Pradesh that stays with you.": "మంచు కమ్మిన కాఫీ తోటల నుంచి ఆలయ ఘంటలు, ఎండ వెలిగే తీరాల వరకు—మనసులో నిలిచే ఆంధ్రప్రదేశ్‌ను కనుగొనండి.",
+  "SCROLL TO EXPLORE": "అన్వేషించడానికి స్క్రోల్ చేయండి",
+  "FIND YOUR RHYTHM": "మీ ప్రయాణ లయను కనుగొనండి",
+  "Not just places.": "ప్రదేశాలే కాదు.",
+  "Ways to feel ": "అనుభూతి చెందే ",
+  "alive.": "విధానాలు.",
+  "Beach days": "బీచ్ రోజులు",
+  "Temple trails": "ఆలయ యాత్రలు",
+  "Local flavours": "స్థానిక రుచులు",
+  "Wild escapes": "ప్రకృతి విహారాలు",
+  "Explore experiences ": "అనుభవాలను చూడండి ",
+  "TASTE & TRADITION": "రుచి & సంప్రదాయం",
+  "Come for the view.": "దృశ్యాల కోసం రండి.",
+  "Stay for the ": "కథల కోసం ",
+  "stories.": "ఆగండి.",
+  "ON THE TABLE": "భోజనంలో",
+  "Flavours to look for": "రుచి చూడదగిన వంటకాలు",
+  "Ask locally; menus and availability vary.": "మెనూ, లభ్యత మారవచ్చు—స్థానికంగా అడగండి.",
+  "ON THE CALENDAR": "పండుగల క్యాలెండర్",
+  "Celebrations worth discovering": "తెలుసుకోవాల్సిన వేడుకలు",
+  "MAKE IT YOUR OWN": "మీకు నచ్చినట్లు ప్లాన్ చేయండి",
+  "YOUR CUSTOM JOURNEY": "మీ అనుకూల ప్రయాణం",
+  "Build your own trip": "మీ ప్రయాణాన్ని మీరే రూపొందించండి",
+  "Add places from any destination card or its full guide. Reorder stops and your trip stays saved in this browser.": "ఏ ప్రదేశ కార్డు లేదా పూర్తి గైడ్ నుంచైనా ప్రదేశాలను జోడించండి. క్రమాన్ని మార్చండి; మీ ప్రయాణం ఈ బ్రౌజర్‌లో భద్రపరచబడుతుంది.",
+  "Your trip is empty for now. Explore the destination cards and add places you like.": "మీ ప్రయాణ జాబితా ఖాళీగా ఉంది. ప్రదేశాలను చూసి నచ్చిన వాటిని జోడించండి.",
+  "Saved only in this browser on this device.": "ఈ పరికరంలోని బ్రౌజర్‌లో మాత్రమే భద్రపరచబడింది.",
+  "Clear trip": "ప్రయాణాన్ని ఖాళీ చేయండి",
+  "Add to trip": "ప్రయాణానికి జోడించండి",
+  "＋ Add to trip": "＋ ప్రయాణానికి జోడించండి",
+  "✓ Added": "✓ జోడించబడింది",
+  "Map this trip ↗": "ఈ ప్రయాణ మార్గాన్ని మ్యాప్‌లో చూడండి ↗",
+  "Open in Maps ↗": "మ్యాప్‌లో తెరవండి ↗",
+  "Your custom trip currently has 0 stops.": "మీ అనుకూల ప్రయాణంలో ప్రస్తుతం 0 ప్రదేశాలు ఉన్నాయి.",
+  "Add to my trip ": "నా ప్రయాణానికి జోడించండి ",
+  "Your first Andhra": "మీ తొలి ఆంధ్ర",
+  "adventure starts ": "సాహసం ఇక్కడే ",
+  "here.": "ప్రారంభం.",
+  "Choose a regional circuit, how long you have, and what you enjoy. We’ll shape a day-by-day starting point you can fine-tune.": "ప్రాంతీయ మార్గం, రోజుల సంఖ్య, మీ ఆసక్తులను ఎంచుకోండి. ప్రతి రోజు కోసం ఒక ప్రాథమిక ప్రయాణ ప్రణాళికను రూపొందిస్తాం.",
+  "Choose a regional route": "ప్రాంతీయ మార్గాన్ని ఎంచుకోండి",
+  "Visakhapatnam & Eastern Ghats": "విశాఖపట్నం & తూర్పు కనుమలు",
+  "Rayalaseema forts & hills": "రాయలసీమ కోటలు & కొండలు",
+  "Vijayawada & Godavari heritage": "విజయవాడ & గోదావరి వారసత్వం",
+  "Tirupati temple visit": "తిరుపతి ఆలయ సందర్శన",
+  "How many days?": "ఎన్ని రోజులు?",
+  "What are you interested in?": "మీ ఆసక్తి ఏమిటి?",
+  "Where will you start?": "మీరు ఎక్కడి నుంచి ప్రారంభిస్తారు?",
+  "A bit of everything": "అన్నింటిలో కొంచెం",
+  "Nature & outdoors": "ప్రకృతి & బహిరంగ విహారం",
+  "History & culture": "చరిత్ర & సంస్కృతి",
+  "Temples & pilgrimage": "ఆలయాలు & తీర్థయాత్ర",
+  "1 days": "1 రోజు",
+  "2 days": "2 రోజులు",
+  "3 days": "3 రోజులు",
+  "4 days": "4 రోజులు",
+  "5 days": "5 రోజులు",
+  "6 days": "6 రోజులు",
+  "7 days": "7 రోజులు",
+  "Build my itinerary ": "నా ప్రయాణ ప్రణాళిక చేయండి ",
+  "Suggested place order only. Share a link to reopen this plan or print a copy; check local road conditions and travel times before setting out.": "ఇది ప్రదేశాల సూచించిన క్రమం మాత్రమే. లింక్‌ను పంచుకోండి లేదా ప్రింట్ చేయండి; బయలుదేరే ముందు రహదారి పరిస్థితులు, ప్రయాణ సమయాలు తనిఖీ చేయండి.",
+  "YOUR TRAVEL CHECKLIST": "మీ ప్రయాణ చెక్‌లిస్ట్",
+  "A little prep goes a long way.": "కొద్దిపాటి ముందస్తు సిద్ధత ఎంతో ఉపయోగం.",
+  "Keep essentials and personal trip notes together while you plan.": "ప్రయాణానికి అవసరమైనవి, మీ గమనికలను ఒకచోట ఉంచండి.",
+  "Clear my trip kit": "నా ట్రిప్ కిట్‌ను ఖాళీ చేయండి",
+  "My trip notes": "నా ప్రయాణ గమనికలు",
+  "Add reminders, places to ask about, or things to book…": "గుర్తింపులు, అడగాల్సిన ప్రదేశాలు లేదా బుకింగ్‌లను రాయండి…",
+  "Saved only in this browser on this device.": "ఈ పరికరంలోని బ్రౌజర్‌లో మాత్రమే భద్రపరచబడింది.",
+  "Don’t store passwords or sensitive personal information here.": "పాస్‌వర్డ్‌లు లేదా సున్నితమైన వ్యక్తిగత సమాచారాన్ని ఇక్కడ భద్రపరచవద్దు.",
+  "KEEP SPENDING IN SIGHT": "ఖర్చులను గమనించండి",
+  "Total budget": "మొత్తం బడ్జెట్",
+  "Trip budget": "ప్రయాణ బడ్జెట్",
+  "Enter a rough limit and update costs as you plan.": "సుమారు పరిమితిని నమోదు చేసి, ప్రణాళికలో ఖర్చులను నవీకరించండి.",
+  "Clear budget": "బడ్జెట్‌ను తొలగించండి",
+  "Total budget ": "మొత్తం బడ్జెట్ ",
+  "Transport": "రవాణా",
+  "Stay": "వసతి",
+  "Food": "ఆహారం",
+  "Activities": "కార్యకలాపాలు",
+  "Other": "ఇతర",
+  "Estimated spend": "అంచనా ఖర్చు",
+  "Remaining": "మిగిలిన మొత్తం",
+  "Set a budget": "బడ్జెట్‌ను నమోదు చేయండి",
+  "Add a budget to see your progress.": "ఖర్చు స్థితిని చూడటానికి బడ్జెట్ నమోదు చేయండి.",
+  "A personal estimate only—prices vary. This tracker stays in this browser and does not process payments.": "ఇది మీ వ్యక్తిగత అంచనా మాత్రమే—ధరలు మారవచ్చు. ఈ వివరాలు ఈ బ్రౌజర్‌లోనే ఉంటాయి; చెల్లింపులు జరగవు.",
+  "Made for unhurried journeys across Andhra Pradesh.": "ఆంధ్రప్రదేశ్‌లో నెమ్మదిగా ఆస్వాదించే ప్రయాణాల కోసం.",
+  "Ask Atlas": "అట్లాస్‌ను అడగండి",
+  "Your Andhra travel companion": "మీ ఆంధ్ర ప్రయాణ సహచరుడు",
+  "Hello! I can help shape your Andhra journey. Ask for a route, a stay area, food stop, or rental tip.": "మీ ఆంధ్ర ప్రయాణాన్ని ప్లాన్ చేయడంలో నేను సహాయపడతాను. మార్గం, వసతి ప్రాంతం, ఆహారం లేదా అద్దె వాహనం గురించి అడగండి.",
+  "Close chat": "చాట్ మూసివేయండి",
+  "PLAN A TRIP": "ప్రయాణం ప్లాన్ చేయండి",
+  "ASK ATLAS ✦": "అట్లాస్‌ను అడగండి ✦",
+  "Ask about your trip...": "మీ ప్రయాణం గురించి అడగండి...",
+  "AI suggestions are for planning—confirm availability before booking.": "AI సూచనలు ప్రణాళిక కోసం మాత్రమే—బుక్ చేసే ముందు లభ్యతను నిర్ధారించండి.",
+  "4-day trip": "4 రోజుల ప్రయాణం",
+  "Stay in Vizag": "విశాఖలో వసతి",
+  "Bike rentals": "బైక్ అద్దె",
+  "Open place guide ": "ప్రదేశ గైడ్ తెరవండి ",
+  "Google Maps ↗": "గూగుల్ మ్యాప్స్ ↗",
+  "No places match that combination yet. Try another district or interest.": "ఈ ఎంపికలకు సరిపడే ప్రదేశాలు లేవు. మరో జిల్లా లేదా ఆసక్తిని ఎంచుకోండి.",
+  "Explore a related place ": "సంబంధిత ప్రదేశాన్ని చూడండి ",
+  "Open in Google Maps ↗": "గూగుల్ మ్యాప్స్‌లో తెరవండి ↗",
+  "Ask Atlas to refine this route ": "ఈ మార్గాన్ని మెరుగుపరచమని అట్లాస్‌ను అడగండి ",
+  "Place guide": "ప్రదేశ గైడ్",
+  "Share trip ↗": "ప్రయాణాన్ని పంచుకోండి ↗",
+  "Print plan": "ప్రణాళికను ప్రింట్ చేయండి",
+  "Ask Atlas to refine ": "మెరుగుపరచమని అట్లాస్‌ను అడగండి ",
+  "HISTORY & CONTEXT": "చరిత్ర & నేపథ్యం",
+  "What to see": "చూడదగినవి",
+  "Getting there": "ఎలా చేరుకోవాలి",
+  "Useful to know": "ఉపయోగకరమైన సమాచారం",
+  "Get directions in Google Maps ": "గూగుల్ మ్యాప్స్‌లో దారి చూడండి ",
+  "Read the official tourism reference ": "అధికారిక పర్యాటక సమాచారాన్ని చదవండి ",
+  "Close place guide": "ప్రదేశ గైడ్‌ను మూసివేయండి",
+  "Light mode": "లైట్ మోడ్",
+  "Dark mode": "డార్క్ మోడ్",
+  "Start exploring": "అన్వేషణ ప్రారంభించండి",
+  "Find the Andhra": "ఆంధ్రను కనుగొనండి",
+  "that feels": "మీకు నచ్చిన",
+  "Ways to feel": "అనుభూతి చెందే",
+  "Stay for the": "కథల కోసం",
+  "adventure starts": "సాహసం",
+  "Build my itinerary": "నా ప్రయాణ ప్రణాళిక చేయండి",
+  "Explore experiences": "అనుభవాలను చూడండి",
+  "Google Maps ↗": "గూగుల్ మ్యాప్స్ ↗",
+  "Get directions in Google Maps": "గూగుల్ మ్యాప్స్‌లో దారి చూడండి",
+  "Read the official tourism reference": "అధికారిక పర్యాటక సమాచారాన్ని చదవండి",
+  "Ask Atlas to refine": "మెరుగుపరచమని అట్లాస్‌ను అడగండి",
+  "Open place guide": "ప్రదేశ గైడ్ తెరవండి",
+  "Explore a related place": "సంబంధిత ప్రదేశాన్ని చూడండి",
+  "Ask Atlas to refine this route": "ఈ మార్గాన్ని మెరుగుపరచమని అట్లాస్‌ను అడగండి",
+  "Switch language to Telugu": "తెలుగు భాషకు మార్చండి",
+  "Switch language to English": "ఆంగ్ల భాషకు మార్చండి",
+};
+const tr = (english) =>
+  currentLanguage === "te" ? (teluguText[english] || english) : english;
+
+function applyLanguage() {
+  const isTelugu = currentLanguage === "te";
+  document.documentElement.lang = isTelugu ? "te" : "en";
+  const walker = document.createTreeWalker(app, NodeFilter.SHOW_TEXT);
+  let node;
+  while ((node = walker.nextNode())) {
+    if (node.__atlasEnglishText === undefined) node.__atlasEnglishText = node.nodeValue;
+    const english = node.__atlasEnglishText;
+    const trimmed = english.trim();
+    if (!trimmed) continue;
+    const leading = english.slice(0, english.indexOf(trimmed));
+    const trailing = english.slice(english.indexOf(trimmed) + trimmed.length);
+    node.nodeValue = `${leading}${isTelugu ? (teluguText[trimmed] || trimmed) : trimmed}${trailing}`;
+  }
+  const heroTitle = document.querySelector("#heroTitle");
+  if (heroTitle) {
+    heroTitle.innerHTML = isTelugu
+      ? "ప్రతి మలుపూ ఒక<br><i>ఆంధ్ర</i> కథ చెబుతుంది."
+      : "Every turn tells<br>an <i>Andhra</i> story.";
+  }
+  const weatherPlaceSelect = document.querySelector("#weatherPlace");
+  Object.values(weatherLocations).forEach((place, index) => {
+    const option = weatherPlaceSelect.options[index];
+    if (option) option.textContent = isTelugu
+      ? `${teluguText[place.district] || place.district} — ${teluguText[place.name] || place.name}`
+      : place.label;
+  });
+  const languageToggle = document.querySelector("#languageToggle");
+  languageToggle.textContent = isTelugu ? "English" : "తెలుగు";
+  languageToggle.setAttribute("aria-pressed", String(isTelugu));
+  languageToggle.setAttribute("aria-label", tr(isTelugu ? "Switch language to English" : "Switch language to Telugu"));
+  document.querySelector("#siteSearchInput").placeholder = tr("Search a place or district…");
+  document.querySelector("#tripKitNotes").placeholder = tr("Add reminders, places to ask about, or things to book…");
+  document.querySelector("#chatInput").placeholder = tr("Ask about your trip...");
+  document.querySelector("#themeToggle").setAttribute("aria-label", `${isTelugu ? "థీమ్ మార్చండి" : "Switch to"} ${document.documentElement.dataset.theme === "dark" ? (isTelugu ? "లైట్ మోడ్" : "light mode") : (isTelugu ? "డార్క్ మోడ్" : "dark mode")}`);
+  document.querySelector("#chatClose").setAttribute("aria-label", tr("Close chat"));
+  document.querySelector("#destinationClose").setAttribute("aria-label", tr("Close place guide"));
+  document.querySelector("#siteSearchToggle").setAttribute("aria-label", isTelugu ? "ప్రదేశాలను వెతకండి" : "Search destinations");
+  document.querySelector("#siteMenuToggle").setAttribute("aria-label", isTelugu ? "నావిగేషన్ మెనూ తెరవండి" : "Open navigation menu");
+  document.querySelector("#chatToggle").setAttribute("aria-label", isTelugu ? "ప్రయాణ సహాయకుడిని తెరవండి" : "Open trip assistant");
+  document.querySelector("#chatToggle").setAttribute("aria-expanded", String(document.querySelector("#chatPanel").classList.contains("open")));
+  document.querySelector("#chatPanel").setAttribute("aria-label", isTelugu ? "ఆంధ్ర ప్రయాణ ప్లానర్" : "Atlas trip planner");
+  document.querySelector("#forecastGrid").setAttribute("aria-label", isTelugu ? "ఏడు రోజుల వాతావరణ అంచనా" : "Seven-day forecast");
+}
+
+applyLanguage();
 
 const destinationDialog = document.querySelector("#destinationDialog");
 const destinationDetails = document.querySelector("#destinationDetails");
@@ -1256,6 +1571,135 @@ function googleMapsDirections(destination, origin) {
   if (origin) params.set("origin", `${origin}, Andhra Pradesh, India`);
   return `https://www.google.com/maps/dir/?${params.toString()}`;
 }
+const customTripStorageKey = "andhra-atlas-custom-trip";
+let customTripSlugs = [];
+try {
+  const storedCustomTrip = JSON.parse(localStorage.getItem(customTripStorageKey) || "[]");
+  if (Array.isArray(storedCustomTrip)) {
+    customTripSlugs = [...new Set(storedCustomTrip)].filter((slug) =>
+      destinations.some((place) => place.slug === slug),
+    );
+  }
+} catch {
+  // The custom planner still works for this visit if storage is blocked.
+}
+
+function googleMapsTripDirections(places) {
+  const point = (place) => `${place.name}, ${place.district}, Andhra Pradesh, India`;
+  const params = new URLSearchParams({ api: "1", travelmode: "driving" });
+  if (places.length > 1) {
+    params.set("origin", point(places[0]));
+    params.set("destination", point(places[places.length - 1]));
+    if (places.length > 2) params.set("waypoints", places.slice(1, -1).map(point).join("|"));
+  } else if (places.length === 1) {
+    params.set("destination", point(places[0]));
+  }
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
+function renderCustomTrip(statusMessage = null) {
+  const places = customTripSlugs.map((slug) => destinations.find((place) => place.slug === slug)).filter(Boolean);
+  const list = document.querySelector("#customTripStops");
+  const empty = document.querySelector("#customTripEmpty");
+  const mapButton = document.querySelector("#customTripMap");
+  const count = document.querySelector("#customTripCount");
+  const clearButton = document.querySelector("#customTripClear");
+  const labelCount = currentLanguage === "te"
+    ? `${places.length} ప్రదేశాలు`
+    : `${places.length} ${places.length === 1 ? "stop" : "stops"}`;
+
+  count.textContent = labelCount;
+  empty.hidden = places.length > 0;
+  list.hidden = places.length === 0;
+  mapButton.hidden = places.length === 0;
+  clearButton.disabled = places.length === 0;
+  mapButton.href = places.length ? googleMapsTripDirections(places) : "#";
+  mapButton.textContent = places.length === 1
+    ? (currentLanguage === "te" ? "మ్యాప్‌లో చూడండి ↗" : "Open in Maps ↗")
+    : (currentLanguage === "te" ? "ఈ ప్రయాణ మార్గాన్ని మ్యాప్‌లో చూడండి ↗" : "Map this trip ↗");
+  list.setAttribute("aria-label", currentLanguage === "te" ? "మీ ప్రయాణ ప్రదేశాలు" : "Your custom trip stops");
+  list.innerHTML = places.map((place, index) => {
+    const previous = index ? places[index - 1] : null;
+    const mapUrl = googleMapsDirections(`${place.name}, ${place.district}`, previous ? `${previous.name}, ${previous.district}` : undefined);
+    const displayName = currentLanguage === "te" ? (teluguText[place.name] || place.name) : place.name;
+    const displayDistrict = currentLanguage === "te" ? (teluguText[place.district] || place.district) : place.district;
+    return `<li class="custom-trip-stop" data-trip-stop="${place.slug}"><span class="custom-trip-index">${String(index + 1).padStart(2, "0")}</span><img src="${place.imageFallback || place.image}" alt="" loading="lazy"/><div class="custom-trip-stop-copy"><strong>${displayName}</strong><span>${displayDistrict}${currentLanguage === "te" ? " జిల్లా" : " District"} · ${place.region}</span></div><div class="custom-trip-stop-tools"><a href="${mapUrl}" target="_blank" rel="noopener noreferrer" aria-label="${currentLanguage === "te" ? `${displayName} కోసం మ్యాప్ దిశలు` : `Map directions to ${place.name}`}">${currentLanguage === "te" ? "మ్యాప్ ↗" : "Map ↗"}</a><button type="button" data-trip-move="up" data-trip-slug="${place.slug}" aria-label="${currentLanguage === "te" ? "పైకి తరలించండి" : "Move up"}" ${index === 0 ? "disabled" : ""}>↑</button><button type="button" data-trip-move="down" data-trip-slug="${place.slug}" aria-label="${currentLanguage === "te" ? "కిందికి తరలించండి" : "Move down"}" ${index === places.length - 1 ? "disabled" : ""}>↓</button><button type="button" data-trip-remove="${place.slug}" aria-label="${currentLanguage === "te" ? `${displayName} తొలగించండి` : `Remove ${place.name}`}">×</button></div></li>`;
+  }).join("");
+
+  document.querySelectorAll("[data-add-to-trip]").forEach((button) => {
+    const included = customTripSlugs.includes(button.dataset.addToTrip);
+    button.setAttribute("aria-pressed", String(included));
+    button.textContent = included
+      ? (currentLanguage === "te" ? "ప్రయాణంలో ఉంది" : "Added")
+      : (currentLanguage === "te" ? "ప్రయాణానికి జోడించండి" : "Add to trip");
+    const place = destinations.find((item) => item.slug === button.dataset.addToTrip);
+    if (place) button.setAttribute("aria-label", currentLanguage === "te"
+      ? `${place.name} ${included ? "మీ ప్రయాణంలో ఉంది" : "ప్రయాణానికి జోడించండి"}`
+      : `${included ? "Remove" : "Add"} ${place.name} ${included ? "from" : "to"} your trip`);
+  });
+
+  document.querySelector("#budgetTripContext").textContent = currentLanguage === "te"
+    ? `మీ అనుకూల ప్రయాణంలో ప్రస్తుతం ${places.length} ప్రదేశాలు ఉన్నాయి.`
+    : `Your custom trip currently has ${places.length} ${places.length === 1 ? "stop" : "stops"}.`;
+  if (statusMessage) document.querySelector("#customTripStatus").textContent = statusMessage;
+}
+
+function saveCustomTrip(statusMessage) {
+  try {
+    localStorage.setItem(customTripStorageKey, JSON.stringify(customTripSlugs));
+    renderCustomTrip(statusMessage || (currentLanguage === "te" ? "ఈ పరికరంలో ప్రయాణం భద్రపరచబడింది." : "Trip saved in this browser."));
+  } catch {
+    renderCustomTrip(currentLanguage === "te"
+      ? "ఈ సందర్శనలో ప్రయాణం అందుబాటులో ఉంటుంది; బ్రౌజర్‌లో భద్రపరచడం సాధ్యం కాలేదు."
+      : "Your trip is available for this visit, but browser storage could not save it.");
+  }
+}
+
+function toggleCustomTripPlace(slug) {
+  const place = destinations.find((item) => item.slug === slug);
+  if (!place) return;
+  const existingIndex = customTripSlugs.indexOf(slug);
+  if (existingIndex >= 0) {
+    customTripSlugs.splice(existingIndex, 1);
+    saveCustomTrip(currentLanguage === "te" ? `${place.name} ప్రయాణం నుంచి తొలగించబడింది.` : `${place.name} removed from your trip.`);
+  } else {
+    customTripSlugs.push(slug);
+    saveCustomTrip(currentLanguage === "te" ? `${place.name} మీ ప్రయాణానికి జోడించబడింది.` : `${place.name} added to your trip.`);
+  }
+}
+
+renderCustomTrip(customTripSlugs.length
+  ? (currentLanguage === "te" ? "మీ మునుపటి ప్రయాణం ఈ బ్రౌజర్ నుంచి తిరిగి తెరవబడింది." : "Your saved trip was restored from this browser.")
+  : null);
+document.addEventListener("click", (event) => {
+  const addButton = event.target.closest("[data-add-to-trip]");
+  if (addButton) {
+    event.preventDefault();
+    toggleCustomTripPlace(addButton.dataset.addToTrip);
+    return;
+  }
+  const removeButton = event.target.closest("[data-trip-remove]");
+  if (removeButton) {
+    event.preventDefault();
+    toggleCustomTripPlace(removeButton.dataset.tripRemove);
+    return;
+  }
+  const moveButton = event.target.closest("[data-trip-move]");
+  if (moveButton) {
+    const from = customTripSlugs.indexOf(moveButton.dataset.tripSlug);
+    const to = from + (moveButton.dataset.tripMove === "up" ? -1 : 1);
+    if (from < 0 || to < 0 || to >= customTripSlugs.length) return;
+    [customTripSlugs[from], customTripSlugs[to]] = [customTripSlugs[to], customTripSlugs[from]];
+    saveCustomTrip(currentLanguage === "te" ? "మీ ప్రయాణ క్రమం నవీకరించబడింది." : "Trip order updated and saved.");
+  }
+});
+document.querySelector("#customTripClear").addEventListener("click", () => {
+  if (!customTripSlugs.length) return;
+  if (!window.confirm(currentLanguage === "te" ? "మీరు జోడించిన అన్ని ప్రదేశాలను తొలగించాలా?" : "Remove all places from your custom trip?")) return;
+  customTripSlugs = [];
+  try { localStorage.removeItem(customTripStorageKey); } catch { /* The visible trip still clears. */ }
+  renderCustomTrip(currentLanguage === "te" ? "మీ ప్రయాణం ఖాళీ చేయబడింది." : "Your custom trip has been cleared.");
+});
 function addDestinationImageFallbacks() {
   document.querySelectorAll(".place-card").forEach((card) => {
     const place = destinations.find((item) => item.slug === card.dataset.destination);
@@ -1275,7 +1719,7 @@ function addDestinationImageFallbacks() {
 addDestinationImageFallbacks();
 document.querySelectorAll(".place-card").forEach((card) =>
   card.addEventListener("click", (event) => {
-    if (event.target.closest("a, .place-save")) return;
+    if (event.target.closest("a, .place-save, [data-add-to-trip]")) return;
     const place = destinations.find(
       (item) => item.slug === card.dataset.destination,
     );
@@ -1307,11 +1751,14 @@ document.querySelectorAll(".place-card").forEach((card) =>
         ${additionalDistrictPicks.length ? `<section class="destination-local-picks"><div><h3>More places in ${place.district}</h3><p>These are extra district suggestions; check distances, access and opening details before combining stops.</p></div><div class="destination-local-picks-grid">${additionalDistrictPicks.map((attraction) => `<article><h4>${attraction.name}</h4><p>${attraction.note}</p><a href="${googleMapsDirections(`${attraction.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></article>`).join("")}</div></section>` : ""}
         ${pairings.length ? `<section class="destination-pairings"><div><h3>${districtPairings.length ? `Explore ${place.district} District` : "Explore the wider region"}</h3><p>${pairingDescription}</p></div><div class="destination-pairing-list">${pairings.map((item) => `<button type="button" data-open-guide="${item.slug}">${item.name}<span>${item.district} District</span></button>`).join("")}</div></section>` : ""}
         <aside class="destination-tip"><strong>Useful to know</strong><p>${place.visitorTip}</p></aside>
+        <button class="destination-add-to-trip" type="button" data-add-to-trip="${place.slug}" aria-pressed="false">＋ Add to my trip</button>
         <a class="destination-map-link" href="${googleMapsDirections(`${place.name}, ${place.district}`)}" target="_blank" rel="noopener noreferrer" aria-label="Get directions to ${place.name} in Google Maps">Get directions in Google Maps <span aria-hidden="true">↗</span></a>
         <a class="destination-source" href="${place.sourceUrl}" target="_blank" rel="noopener noreferrer">Read the official tourism reference <span aria-hidden="true">↗</span><small>${place.sourceLabel}</small></a>
         ${place.imageCredit ? `<p class="destination-photo-credit">Photo: <a href="${place.imageCreditUrl}" target="_blank" rel="noopener noreferrer">${place.imageCredit}</a></p>` : ""}
       </div>
     </article>`;
+    applyLanguage();
+    renderCustomTrip();
     destinationDialog.showModal();
   }),
 );
@@ -1344,6 +1791,7 @@ function renderDistrictPicks(district) {
   }
   districtPicksPanel.innerHTML = `<div class="district-picks-heading"><div><p class="eyebrow dark">DISTRICT GUIDE</p><h3>More to explore in ${district}</h3><p>Quick picks beyond the featured place guides. Check local access, opening hours and conditions before you go.</p></div><span>${attractions.length} extra stops</span></div><div class="district-picks-grid">${attractions.map((attraction) => `<article class="district-pick"><div><span class="district-pick-icon" aria-hidden="true">✦</span><h4>${attraction.name}</h4><p>${attraction.note}</p></div><a href="${googleMapsDirections(`${attraction.name}, ${district}`)}" target="_blank" rel="noopener noreferrer">Open in Google Maps ↗</a></article>`).join("")}</div>`;
   districtPicksPanel.hidden = false;
+  applyLanguage();
 }
 
 const tripKitStorageKey = "andhra-atlas-trip-kit";
@@ -1373,7 +1821,9 @@ function renderTripKit() {
   tripKitNotes.value = tripKitState.notes;
   const packed = tripKitItems.filter((input) => input.checked).length;
   tripKitProgress.value = packed;
-  tripKitProgressText.textContent = `${packed} of ${tripKitItems.length} packed`;
+  tripKitProgressText.textContent = currentLanguage === "te"
+    ? `${tripKitItems.length}లో ${packed} సిద్ధం`
+    : `${packed} of ${tripKitItems.length} packed`;
 }
 
 function saveTripKit(announceSave = true) {
@@ -1383,29 +1833,129 @@ function saveTripKit(announceSave = true) {
   tripKitState.notes = tripKitNotes.value.slice(0, 3000);
   try {
     localStorage.setItem(tripKitStorageKey, JSON.stringify(tripKitState));
-    if (announceSave) tripKitSaveStatus.textContent = "Saved in this browser on this device.";
+    if (announceSave) tripKitSaveStatus.textContent = currentLanguage === "te"
+      ? "ఈ పరికరంలోని బ్రౌజర్‌లో భద్రపరచబడింది."
+      : "Saved in this browser on this device.";
   } catch {
-    if (announceSave) tripKitSaveStatus.textContent = "Browser storage is unavailable; keep a separate copy of these notes.";
+    if (announceSave) tripKitSaveStatus.textContent = currentLanguage === "te"
+      ? "బ్రౌజర్‌లో భద్రపరచడం సాధ్యం కాలేదు; గమనికలను వేరుగా దాచుకోండి."
+      : "Browser storage is unavailable; keep a separate copy of these notes.";
   }
   const packed = tripKitItems.filter((input) => input.checked).length;
   tripKitProgress.value = packed;
-  tripKitProgressText.textContent = `${packed} of ${tripKitItems.length} packed`;
+  tripKitProgressText.textContent = currentLanguage === "te"
+    ? `${tripKitItems.length}లో ${packed} సిద్ధం`
+    : `${packed} of ${tripKitItems.length} packed`;
 }
 
 tripKitItems.forEach((input) => input.addEventListener("change", saveTripKit));
 tripKitNotes.addEventListener("input", () => saveTripKit(false));
 document.querySelector("#tripKitReset").addEventListener("click", () => {
-  if (!window.confirm("Clear your Trip Kit checklist and notes from this browser?")) return;
+  if (!window.confirm(currentLanguage === "te"
+    ? "ఈ బ్రౌజర్‌లోని ట్రిప్ కిట్ చెక్‌లిస్ట్, గమనికలను తొలగించాలా?"
+    : "Clear your Trip Kit checklist and notes from this browser?")) return;
   tripKitState = { checked: {}, notes: "" };
   renderTripKit();
   try {
     localStorage.removeItem(tripKitStorageKey);
-    tripKitSaveStatus.textContent = "Trip kit cleared from this browser.";
+    tripKitSaveStatus.textContent = currentLanguage === "te"
+      ? "ఈ బ్రౌజర్‌లోని ట్రిప్ కిట్ తొలగించబడింది."
+      : "Trip kit cleared from this browser.";
   } catch {
-    tripKitSaveStatus.textContent = "The checklist was reset for this visit, but browser storage could not be cleared.";
+    tripKitSaveStatus.textContent = currentLanguage === "te"
+      ? "ఈ సందర్శన కోసం చెక్‌లిస్ట్ రీసెట్ అయింది; బ్రౌజర్ నిల్వను తొలగించలేకపోయాం."
+      : "The checklist was reset for this visit, but browser storage could not be cleared.";
   }
 });
 renderTripKit();
+
+const budgetStorageKey = "andhra-atlas-trip-budget";
+const budgetInput = document.querySelector("#budgetLimit");
+const budgetCategoryInputs = [...document.querySelectorAll("[data-budget-category]")];
+let budgetState = { limit: "", categories: {} };
+try {
+  const storedBudget = JSON.parse(localStorage.getItem(budgetStorageKey) || "null");
+  if (storedBudget && typeof storedBudget === "object") {
+    budgetState = {
+      limit: Number.isFinite(Number(storedBudget.limit)) && Number(storedBudget.limit) > 0 ? String(storedBudget.limit) : "",
+      categories: storedBudget.categories && typeof storedBudget.categories === "object" ? storedBudget.categories : {},
+    };
+  }
+} catch {
+  // Keep the tracker usable for this visit if browser storage is unavailable.
+}
+
+function formatRupees(amount) {
+  return new Intl.NumberFormat(currentLanguage === "te" ? "te-IN" : "en-IN", {
+    style: "currency",
+    currency: "INR",
+    maximumFractionDigits: 0,
+  }).format(amount);
+}
+
+function renderBudget() {
+  budgetInput.value = budgetState.limit;
+  budgetCategoryInputs.forEach((input) => {
+    input.value = budgetState.categories[input.dataset.budgetCategory] ?? "";
+  });
+  const limit = Number(budgetState.limit) || 0;
+  const spent = budgetCategoryInputs.reduce((sum, input) => sum + (Number(budgetState.categories[input.dataset.budgetCategory]) || 0), 0);
+  const remaining = limit - spent;
+  const ratio = limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : 0;
+  document.querySelector("#budgetSpent").textContent = formatRupees(spent);
+  document.querySelector("#budgetRemaining").textContent = !limit
+    ? tr("Set a budget")
+    : remaining >= 0
+      ? formatRupees(remaining)
+      : `${currentLanguage === "te" ? "బడ్జెట్ మించిపోయింది" : "Over budget by"} ${formatRupees(Math.abs(remaining))}`;
+  const meter = document.querySelector("#budgetMeter");
+  meter.value = ratio;
+  meter.setAttribute("aria-label", currentLanguage === "te" ? "వినియోగించిన బడ్జెట్" : "Budget used");
+  document.querySelector("#budgetMeterText").textContent = !limit
+    ? tr("Add a budget to see your progress.")
+    : currentLanguage === "te"
+      ? `బడ్జెట్‌లో ${ratio}% ఖర్చు · ${formatRupees(spent)} / ${formatRupees(limit)}`
+      : `${ratio}% of budget used · ${formatRupees(spent)} / ${formatRupees(limit)}`;
+}
+
+function saveBudget() {
+  budgetState.limit = budgetInput.value && Number(budgetInput.value) > 0 ? String(Number(budgetInput.value)) : "";
+  budgetState.categories = Object.fromEntries(budgetCategoryInputs.map((input) => [
+    input.dataset.budgetCategory,
+    input.value && Number(input.value) >= 0 ? String(Number(input.value)) : "",
+  ]));
+  try {
+    localStorage.setItem(budgetStorageKey, JSON.stringify(budgetState));
+  } catch {
+    // In-memory calculations still work if storage is blocked.
+  }
+  renderBudget();
+}
+
+budgetInput.addEventListener("input", saveBudget);
+budgetCategoryInputs.forEach((input) => input.addEventListener("input", saveBudget));
+document.querySelector("#budgetReset").addEventListener("click", () => {
+  if (!window.confirm(currentLanguage === "te" ? "ఈ పరికరంలో భద్రపరిచిన బడ్జెట్‌ను తొలగించాలా?" : "Clear the trip budget saved in this browser?")) return;
+  budgetState = { limit: "", categories: {} };
+  try { localStorage.removeItem(budgetStorageKey); } catch { /* Current view is still reset. */ }
+  renderBudget();
+});
+renderBudget();
+
+document.querySelector("#languageToggle").addEventListener("click", () => {
+  currentLanguage = currentLanguage === "en" ? "te" : "en";
+  try { localStorage.setItem(languageStorageKey, currentLanguage); } catch { /* Language still changes for this visit. */ }
+  applyLanguage();
+  updateThemeButton(document.documentElement.dataset.theme);
+  renderTripKit();
+  renderCustomTrip(customTripSlugs.length
+    ? (currentLanguage === "te" ? "మీ ప్రయాణం ఈ బ్రౌజర్‌లో భద్రపరచబడింది." : "Your trip is saved in this browser.")
+    : (currentLanguage === "te" ? "ప్రదేశాలను జోడించండి; మీ జాబితా ఈ పరికరంలో భద్రపరచబడుతుంది." : "Add places and your list will be saved on this device."));
+  renderBudget();
+  if (itineraryBuilt) renderItinerary();
+  if (!document.querySelector("#siteSearchPanel").hidden) renderSiteSearchResults(document.querySelector("#siteSearchInput").value);
+  loadWeather();
+});
 
 function persistSavedPlaces() {
   try {
@@ -1554,6 +2104,7 @@ function renderSiteSearchResults(query = "") {
   if (!matches.length) {
     siteSearchResults.innerHTML =
       '<p class="site-search-empty">No matching places yet. Try another name or district.</p>';
+    applyLanguage();
     return;
   }
 
@@ -1563,6 +2114,7 @@ function renderSiteSearchResults(query = "") {
       (place) => `<button class="site-search-result" type="button" data-search-place="${place.slug}"><span><strong>${place.name}</strong><small>${place.district} District · ${place.type}</small></span><span aria-hidden="true">↗</span></button>`,
     )
     .join("");
+  applyLanguage();
 }
 
 siteSearchToggle.addEventListener("click", () => {
@@ -1630,6 +2182,35 @@ const itineraryDays = document.querySelector("#itineraryDays");
 const itineraryInterest = document.querySelector("#itineraryInterest");
 const itineraryStart = document.querySelector("#itineraryStart");
 const itineraryResult = document.querySelector("#itineraryResult");
+const itineraryStorageKey = "andhra-atlas-saved-itinerary";
+const itineraryInterests = ["balanced", "nature", "heritage", "spiritual"];
+const itineraryStartingCities = [...itineraryStart.options].map((option) => option.value);
+let savedItineraryPlan = null;
+function isValidItineraryPlan(plan) {
+  return Boolean(
+    plan &&
+    Object.prototype.hasOwnProperty.call(itineraryProfiles, plan.route) &&
+    itineraryProfiles[plan.route].days.includes(Number(plan.days)) &&
+    itineraryInterests.includes(plan.interest) &&
+    itineraryStartingCities.includes(plan.start),
+  );
+}
+function getCurrentItineraryPlan() {
+  return {
+    route: itineraryRoute.value,
+    days: Number(itineraryDays.value),
+    interest: itineraryInterest.value,
+    start: itineraryStart.value,
+  };
+}
+try {
+  const storedItinerary = JSON.parse(localStorage.getItem(itineraryStorageKey) || "null");
+  if (isValidItineraryPlan(storedItinerary)) {
+    savedItineraryPlan = { ...storedItinerary, days: Number(storedItinerary.days) };
+  }
+} catch {
+  // Planning remains available for this visit when browser storage is blocked.
+}
 let itineraryBuilt = false;
 
 function updateItineraryOptions() {
@@ -1682,6 +2263,25 @@ function printItinerary() {
   window.print();
 }
 
+function saveItinerary() {
+  const status = document.querySelector("#itineraryActionStatus");
+  const saveButton = document.querySelector("#saveItineraryButton");
+  const plan = getCurrentItineraryPlan();
+  try {
+    localStorage.setItem(itineraryStorageKey, JSON.stringify(plan));
+    savedItineraryPlan = plan;
+    saveButton.textContent = currentLanguage === "te" ? "భద్రపరచబడింది ✓" : "Saved ✓";
+    saveButton.setAttribute("aria-pressed", "true");
+    status.textContent = currentLanguage === "te"
+      ? "ఈ ప్రయాణ ప్రణాళిక ఈ బ్రౌజర్‌లో భద్రపరచబడింది."
+      : "Your plan is saved in this browser on this device.";
+  } catch {
+    status.textContent = currentLanguage === "te"
+      ? "ఈ పేజీ తెరిచి ఉన్నంత వరకు ప్రణాళిక అందుబాటులో ఉంటుంది; బ్రౌజర్‌లో భద్రపరచలేకపోయాం."
+      : "Your plan is available while this page is open, but browser storage could not save it.";
+  }
+}
+
 function renderItinerary() {
   const profile = itineraryProfiles[itineraryRoute.value];
   const selectedDays = Number(itineraryDays.value);
@@ -1692,18 +2292,30 @@ function renderItinerary() {
     .slice(0, Math.min(selectedDays, profile.stops.length))
     .sort((a, b) => profile.stops.indexOf(a) - profile.stops.indexOf(b));
   const places = chosen.map((slug) => itineraryPlaces[slug]).filter(Boolean);
-  const labels = { balanced: "a balanced mix", nature: "nature and outdoor stops", heritage: "history and culture", spiritual: "temples and pilgrimage" };
+  const labels = currentLanguage === "te"
+    ? { balanced: "అన్నింటిలో కొంచెం", nature: "ప్రకృతి, బహిరంగ ప్రదేశాలు", heritage: "చరిత్ర, సంస్కృతి", spiritual: "ఆలయాలు, తీర్థయాత్ర" }
+    : { balanced: "a balanced mix", nature: "nature and outdoor stops", heritage: "history and culture", spiritual: "temples and pilgrimage" };
+  const englishLabels = { balanced: "a balanced mix", nature: "nature and outdoor stops", heritage: "history and culture", spiritual: "temples and pilgrimage" };
   const start = itineraryStart.value;
+  const currentPlan = getCurrentItineraryPlan();
+  const planIsSaved = savedItineraryPlan &&
+    savedItineraryPlan.route === currentPlan.route &&
+    savedItineraryPlan.days === currentPlan.days &&
+    savedItineraryPlan.interest === currentPlan.interest &&
+    savedItineraryPlan.start === currentPlan.start;
   const dayCards = places.map((place, index) => {
     const previous = index === 0 ? start : places[index - 1].name;
-    return `<article class="planner-day"><div class="planner-day-index">DAY ${index + 1}</div><div class="planner-day-copy"><p class="planner-day-region">${place.region} · ${place.timeNeeded}</p><h3>${place.name}</h3><p>${place.intro}</p><span class="planner-day-highlight">Try: ${place.highlights[0]}</span></div><div class="planner-day-actions"><span class="planner-leg">${previous} → ${place.name}</span><button type="button" data-open-guide="${place.slug}">Place guide</button><a class="planner-map-link" href="${googleMapsDirections(place.name, previous)}" target="_blank" rel="noopener noreferrer" aria-label="Open directions from ${previous} to ${place.name} in Google Maps">Google Maps ↗</a></div></article>`;
+    const highlights = place.highlights.slice(0, 3).map((highlight) => `<li>${highlight}</li>`).join("");
+    const dayLabel = currentLanguage === "te" ? `రోజు ${index + 1}` : `DAY ${String(index + 1).padStart(2, "0")}`;
+    return `<article class="planner-day"><div class="planner-day-index">${dayLabel}</div><img class="planner-day-photo" src="${place.imageFallback || place.image}" alt="" loading="lazy"/><div class="planner-day-copy"><p class="planner-day-region">${place.region} · ${place.timeNeeded}</p><h3>${place.name}</h3><p>${place.intro}</p><p class="planner-day-list-label">${currentLanguage === "te" ? "సూచించిన అనుభవాలు" : "A few good things to do"}</p><ul class="planner-day-highlights">${highlights}</ul><p class="planner-day-tip"><strong>${currentLanguage === "te" ? "ముందుగా తెలుసుకోండి" : "Good to know"}</strong> ${place.visitorTip}</p></div><div class="planner-day-actions"><span class="planner-leg">${previous} → ${place.name}</span><button type="button" data-open-guide="${place.slug}">${currentLanguage === "te" ? "ప్రదేశ గైడ్" : "Place guide"}</button><a class="planner-map-link" href="${googleMapsDirections(place.name, previous)}" target="_blank" rel="noopener noreferrer" aria-label="Open directions from ${previous} to ${place.name} in Google Maps">Google Maps ↗</a></div></article>`;
   }).join("");
   const flexibleDays = selectedDays - places.length;
-  const flexibleNote = flexibleDays > 0 ? `<p class="planner-buffer"><strong>Leave room to breathe:</strong> ${profile.buffer} (${flexibleDays} flexible ${flexibleDays === 1 ? "day" : "days"} included.)</p>` : "";
+  const flexibleNote = flexibleDays > 0 ? `<p class="planner-buffer"><strong>${currentLanguage === "te" ? "నెమ్మదిగా ఆస్వాదించండి:" : "Leave room to breathe:"}</strong> ${profile.buffer} (${flexibleDays} ${currentLanguage === "te" ? "విశ్రాంతి రోజులు చేర్చబడ్డాయి." : `flexible ${flexibleDays === 1 ? "day" : "days"} included.`})</p>` : "";
   const routeLabel = itineraryRoute.options[itineraryRoute.selectedIndex].text;
-  const planPrompt = `Make this ${selectedDays}-day ${routeLabel} plan practical for a first-time visitor focused on ${labels[preference]}, starting from ${start}: ${places.map((place) => place.name).join(" → ")}. Suggest sensible overnight bases, local food and realistic pacing. Flag travel times or booking details I should verify.`;
-  itineraryResult.innerHTML = `<div class="planner-result-heading"><div><p class="eyebrow dark">YOUR ${selectedDays}-DAY ROUTE</p><h3>${routeLabel}</h3><p>Starting in ${start} · Focus: ${labels[preference]}</p></div><div class="planner-result-tools"><button class="planner-action" id="shareItineraryButton" type="button">Share trip ↗</button><button class="planner-action" id="printItineraryButton" type="button">Print plan</button><button class="route-open planner-ask" type="button">Ask Atlas to refine <span>→</span></button></div></div><p class="planner-action-status" id="itineraryActionStatus" aria-live="polite"></p><div class="planner-days">${dayCards}</div>${flexibleNote}<p class="planner-disclaimer">This is a place-by-place outline, not a confirmed schedule. Temple timings, access, transport and weather can change; confirm before you travel.</p>`;
+  const planPrompt = `Make this ${selectedDays}-day ${routeLabel} plan practical for a first-time visitor focused on ${englishLabels[preference]}, starting from ${start}: ${places.map((place) => place.name).join(" → ")}. Suggest sensible overnight bases, local food and realistic pacing. Flag travel times or booking details I should verify.`;
+  itineraryResult.innerHTML = `<div class="planner-result-heading"><div><p class="eyebrow dark">${currentLanguage === "te" ? `మీ ${selectedDays} రోజుల మార్గం` : `YOUR ${selectedDays}-DAY ROUTE`}</p><h3>${routeLabel}</h3><p>${currentLanguage === "te" ? `${start} నుంచి ప్రారంభం · ఆసక్తి: ${labels[preference]}` : `Starting in ${start} · Focus: ${labels[preference]}`}</p></div><div class="planner-result-tools"><button class="planner-action" id="saveItineraryButton" type="button" aria-pressed="${Boolean(planIsSaved)}">${planIsSaved ? (currentLanguage === "te" ? "భద్రపరచబడింది ✓" : "Saved ✓") : (currentLanguage === "te" ? "ప్రణాళిక భద్రపరచండి" : "Save plan")}</button><button class="planner-action" id="shareItineraryButton" type="button">Share trip ↗</button><button class="planner-action" id="printItineraryButton" type="button">Print plan</button><button class="route-open planner-ask" type="button">Ask Atlas to refine <span>→</span></button></div></div><p class="planner-action-status" id="itineraryActionStatus" aria-live="polite"></p><div class="planner-days">${dayCards}</div>${flexibleNote}<p class="planner-disclaimer">${currentLanguage === "te" ? "ఇది ప్రదేశాల వారీగా ఒక ప్రాథమిక ప్రణాళిక మాత్రమే. ఆలయ సమయాలు, ప్రవేశం, రవాణా, వాతావరణం మారవచ్చు—ప్రయాణానికి ముందు నిర్ధారించండి." : "This is a place-by-place outline, not a confirmed schedule. Temple timings, access, transport and weather can change; confirm before you travel."}</p>`;
   itineraryResult.hidden = false;
+  applyLanguage();
   itineraryResult.querySelector(".planner-ask").addEventListener("click", () => askAtlas(planPrompt));
 }
 
@@ -1726,11 +2338,21 @@ itineraryStart.addEventListener("change", refreshBuiltItinerary);
 itineraryResult.addEventListener("click", (event) => {
   const guideButton = event.target.closest("[data-open-guide]");
   if (guideButton) openDestinationGuide(guideButton.dataset.openGuide);
+  if (event.target.closest("#saveItineraryButton")) saveItinerary();
   if (event.target.closest("#shareItineraryButton")) shareItinerary();
   if (event.target.closest("#printItineraryButton")) printItinerary();
 });
 updateItineraryOptions();
 itineraryResult.hidden = true;
+if (savedItineraryPlan) {
+  itineraryRoute.value = savedItineraryPlan.route;
+  updateItineraryOptions();
+  itineraryDays.value = String(savedItineraryPlan.days);
+  itineraryInterest.value = savedItineraryPlan.interest;
+  itineraryStart.value = savedItineraryPlan.start;
+  itineraryBuilt = true;
+  renderItinerary();
+}
 const sharedTripParams = new URLSearchParams(window.location.search);
 const sharedTripRoute = sharedTripParams.get("tripRoute");
 if (sharedTripRoute && Object.prototype.hasOwnProperty.call(itineraryProfiles, sharedTripRoute)) {
@@ -1771,21 +2393,75 @@ const makeWeatherUrl = ({ latitude, longitude }) =>
   `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max&forecast_days=7&timezone=Asia%2FKolkata&wind_speed_unit=kmh`;
 const formatDay = (date, index) =>
   index === 0
-    ? "Today"
-    : new Intl.DateTimeFormat("en-IN", {
+    ? (currentLanguage === "te" ? "ఈ రోజు" : "Today")
+    : new Intl.DateTimeFormat(currentLanguage === "te" ? "te-IN" : "en-IN", {
         weekday: "short",
         timeZone: "Asia/Kolkata",
       }).format(new Date(`${date}T12:00:00+05:30`));
+
+function localizeWeather(description) {
+  if (currentLanguage !== "te") return description;
+  return ({
+    "Clear sky": "ఆకాశం నిర్మలం",
+    "Mainly clear": "ఎక్కువగా నిర్మలం",
+    "Partly cloudy": "కొంత మేఘావృతం",
+    Overcast: "పూర్తిగా మేఘావృతం",
+    Fog: "పొగమంచు",
+    Drizzle: "చినుకులు",
+    Rain: "వర్షం",
+    Snow: "మంచు",
+    Showers: "జల్లులు",
+    "Snow showers": "మంచు జల్లులు",
+    Thunderstorm: "ఉరుములతో కూడిన వర్షం",
+    Variable: "మారుతూ ఉంటుంది",
+  })[description] || description;
+}
+const localizePlaceName = (name) =>
+  currentLanguage === "te" ? (teluguText[name] || name) : name;
+
+function renderWeatherAdvice(place, current, daily) {
+  const panel = document.querySelector("#weatherAdvice");
+  const nearDays = Math.min(3, daily.time.length);
+  const maxRainChance = Math.max(0, ...daily.precipitation_probability_max.slice(0, nearDays).map((value) => Number(value) || 0));
+  const expectedRain = daily.precipitation_sum.slice(0, nearDays).reduce((sum, value) => sum + (Number(value) || 0), 0);
+  const highestTemperature = Math.max(...daily.temperature_2m_max.slice(0, nearDays).map(Number));
+  const lowestTemperature = Math.min(...daily.temperature_2m_min.slice(0, nearDays).map(Number));
+  const wind = Number(current.wind_speed_10m) || 0;
+  let advice;
+  if (maxRainChance >= 60 || expectedRain >= 8) {
+    advice = currentLanguage === "te"
+      ? ["వానకు సిద్ధంగా ఉండండి", `రాబోయే మూడు రోజుల్లో ${Math.round(maxRainChance)}% వరకు వర్ష సూచన ఉంది (${expectedRain.toFixed(1)} మి.మీ. అంచనా). గొడుగు లేదా తేలికపాటి రెయిన్‌కోట్ తీసుకెళ్లండి; ప్రయాణానికి ముందు రహదారి పరిస్థితులు తనిఖీ చేయండి.`]
+      : ["Pack for showers", `The next three days show up to ${Math.round(maxRainChance)}% rain chance (${expectedRain.toFixed(1)} mm forecast). Carry a light rain layer and check road conditions before setting out.`];
+  } else if (highestTemperature >= 35) {
+    advice = currentLanguage === "te"
+      ? ["వేడికి అనుగుణంగా ప్లాన్ చేయండి", `రాబోయే మూడు రోజులలో గరిష్ఠ ఉష్ణోగ్రత ${Math.round(highestTemperature)}°C వరకు ఉండొచ్చు. ఉదయం లేదా సాయంత్రం బయటికి వెళ్లండి; నీరు, టోపీ తీసుకెళ్లండి.`]
+      : ["Plan around the heat", `The next three days may reach ${Math.round(highestTemperature)}°C. Plan outdoor visits for morning or evening, and carry water and sun protection.`];
+  } else if (lowestTemperature < 18) {
+    advice = currentLanguage === "te"
+      ? ["కొంచెం వెచ్చని దుస్తులు తీసుకెళ్లండి", `రాబోయే రోజులలో కనిష్ఠ ఉష్ణోగ్రత ${Math.round(lowestTemperature)}°C వరకు తగ్గొచ్చు. కొండ ప్రాంతాల్లో ఉదయం, సాయంత్రం చల్లగా ఉండవచ్చు.`]
+      : ["Bring a light layer", `Temperatures may dip to ${Math.round(lowestTemperature)}°C over the next few days. Hill and early-morning visits can feel cooler.`];
+  } else if (wind >= 35) {
+    advice = currentLanguage === "te"
+      ? ["తీరప్రాంత ప్రణాళికలను నిర్ధారించండి", `గాలి వేగం సుమారు ${Math.round(wind)} కి.మీ./గం. ఉంది. బోటు లేదా బీచ్ కార్యకలాపాలకు ముందు స్థానిక పరిస్థితులు, అధికారిక సూచనలు తెలుసుకోండి.`]
+      : ["Check coastal plans locally", `Winds are around ${Math.round(wind)} km/h. Check local conditions and official advice before boat or beach activities.`];
+  } else {
+    advice = currentLanguage === "te"
+      ? ["బయటికి వెళ్లేందుకు అనుకూలం", "ప్రస్తుతం తీవ్రమైన వాతావరణ సూచన లేదు. అయినా నీరు తీసుకెళ్లండి, మధ్యాహ్నపు ఎండలో విరామం తీసుకోండి; స్థానిక పరిస్థితులు మారవచ్చు."]
+      : ["A good window to explore", "No strong weather signal stands out right now. Carry water and take a break from the midday sun; local conditions can still change."];
+  }
+  panel.innerHTML = `<span class="weather-advice-icon" aria-hidden="true">✦</span><div><p class="eyebrow dark">${currentLanguage === "te" ? "వాతావరణం ఆధారంగా ప్రయాణ సూచన" : "TRAVEL TIP FROM THE FORECAST"} · ${localizePlaceName(place.name)}</p><h3>${advice[0]}</h3><p>${advice[1]}</p><small>${currentLanguage === "te" ? "ఓపెన్-మెటియో అంచనా ఆధారంగా; హెచ్చరికల కోసం అధికారిక వనరులను చూడండి." : "Based on the Open-Meteo forecast; check official sources for alerts."}</small></div>`;
+  panel.hidden = false;
+}
 let weatherRequestId = 0;
 
 async function loadWeather() {
   const requestId = ++weatherRequestId;
   const place = weatherLocations[document.querySelector("#weatherPlace").value];
   document.querySelector("#weatherUpdated").textContent =
-    `Loading ${place.name} forecast…`;
-  document.querySelector("#weatherLocation").textContent = place.name;
+    currentLanguage === "te" ? `${place.name} వాతావరణాన్ని లోడ్ చేస్తున్నాం…` : `Loading ${place.name} forecast…`;
+  document.querySelector("#weatherLocation").textContent = localizePlaceName(place.name);
   document.querySelector("#forecastLocationLabel").textContent =
-    `${place.name} · ${place.district} District`;
+    `${localizePlaceName(place.name)} · ${currentLanguage === "te" ? "ఆంధ్రప్రదేశ్" : `${place.district} District`}`;
   try {
     const response = await fetch(makeWeatherUrl(place), {
       signal: AbortSignal.timeout(15000),
@@ -1798,33 +2474,35 @@ async function loadWeather() {
     document.querySelector("#weatherIcon").textContent = icon;
     document.querySelector("#temperature").textContent =
       `${Math.round(current.temperature_2m)}°C`;
-    document.querySelector("#weatherDetail").textContent = description;
+    document.querySelector("#weatherDetail").textContent = localizeWeather(description);
     document.querySelector("#weatherHumidity").textContent =
-      `Humidity ${Math.round(current.relative_humidity_2m)}%`;
+      `${currentLanguage === "te" ? "తేమ" : "Humidity"} ${Math.round(current.relative_humidity_2m)}%`;
     document.querySelector("#weatherWind").textContent =
-      `Wind ${Math.round(current.wind_speed_10m)} km/h`;
+      `${currentLanguage === "te" ? "గాలి" : "Wind"} ${Math.round(current.wind_speed_10m)} ${currentLanguage === "te" ? "కి.మీ./గం." : "km/h"}`;
     document.querySelector("#weatherRain").textContent =
-      `Precipitation ${current.precipitation == null ? "—" : `${Number(current.precipitation).toFixed(1)} mm`}`;
+      `${currentLanguage === "te" ? "వర్షపాతం" : "Precipitation"} ${current.precipitation == null ? "—" : `${Number(current.precipitation).toFixed(1)} ${currentLanguage === "te" ? "మి.మీ." : "mm"}`}`;
     document.querySelector("#weatherSummary").textContent =
-      description.toLowerCase() + ".";
+      localizeWeather(description) + (currentLanguage === "te" ? "." : ".");
     const modelTime = new Date(`${current.time}+05:30`);
     document.querySelector("#weatherUpdated").textContent =
-      `Forecast model time · ${new Intl.DateTimeFormat("en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(modelTime)} IST`;
+      `${currentLanguage === "te" ? "వాతావరణ నమూనా సమయం · " : "Forecast model time · "}${new Intl.DateTimeFormat(currentLanguage === "te" ? "te-IN" : "en-IN", { dateStyle: "medium", timeStyle: "short", timeZone: "Asia/Kolkata" }).format(modelTime)} ${currentLanguage === "te" ? "IST" : "IST"}`;
     document.querySelector("#forecastGrid").innerHTML = daily.time
       .map((date, index) => {
-        const [dayIcon, dayDescription] = codeToWeather(
+        const [dayIcon, englishDescription] = codeToWeather(
           daily.weather_code[index],
         );
+        const dayDescription = localizeWeather(englishDescription);
         const rainChance = daily.precipitation_probability_max[index];
         const chanceText =
           rainChance == null ? "—" : `${Math.round(rainChance)}%`;
         const precipitation =
           daily.precipitation_sum[index] == null
             ? "—"
-            : `${Number(daily.precipitation_sum[index]).toFixed(1)} mm`;
+            : `${Number(daily.precipitation_sum[index]).toFixed(1)} ${currentLanguage === "te" ? "మి.మీ." : "mm"}`;
         return `<article class="forecast-card"><span class="forecast-day">${formatDay(date, index)}</span><span class="forecast-icon" aria-label="${dayDescription}">${dayIcon}</span><span class="forecast-condition">${dayDescription}</span><span class="forecast-temps"><strong>${Math.round(daily.temperature_2m_max[index])}°</strong><span>${Math.round(daily.temperature_2m_min[index])}°</span></span><span class="forecast-rain">☂ ${chanceText} · ${precipitation}</span></article>`;
       })
       .join("");
+    renderWeatherAdvice(place, current, daily);
   } catch (error) {
     if (requestId !== weatherRequestId) return;
     const reason = error.message?.startsWith("Open-Meteo returned HTTP")
@@ -1832,12 +2510,13 @@ async function loadWeather() {
       : error.name === "TimeoutError"
         ? "The weather request timed out"
         : "Open-Meteo could not be reached; check your internet connection";
-    document.querySelector("#temperature").textContent = "Weather unavailable";
+    document.querySelector("#temperature").textContent = currentLanguage === "te" ? "వాతావరణం అందుబాటులో లేదు" : "Weather unavailable";
     document.querySelector("#weatherDetail").textContent = reason;
     document.querySelector("#weatherUpdated").textContent =
-      `Could not load ${place.name}. ${reason}. Press Refresh to retry.`;
+      currentLanguage === "te" ? `${localizePlaceName(place.name)} వాతావరణం లోడ్ కాలేదు. మళ్లీ ప్రయత్నించండి.` : `Could not load ${place.name}. ${reason}. Press Refresh to retry.`;
     document.querySelector("#forecastGrid").innerHTML =
-      `<p class="forecast-loading">${reason}. Press Refresh to retry.</p>`;
+      `<p class="forecast-loading">${reason}. ${currentLanguage === "te" ? "మళ్లీ పొందండి బటన్‌ను నొక్కండి." : "Press Refresh to retry."}</p>`;
+    document.querySelector("#weatherAdvice").hidden = true;
   }
 }
 const savedWeatherPlace = localStorage.getItem("andhra-atlas-weather-place");
@@ -1877,17 +2556,20 @@ function updateThemeButton(theme) {
   themeToggle.setAttribute("aria-pressed", String(isDark));
   themeToggle.setAttribute(
     "aria-label",
-    `Switch to ${isDark ? "light" : "dark"} mode`,
+    currentLanguage === "te"
+      ? `${isDark ? "లైట్" : "డార్క్"} మోడ్‌కు మార్చండి`
+      : `Switch to ${isDark ? "light" : "dark"} mode`,
   );
   document.querySelector("#themeIcon").textContent = isDark ? "☾" : "☼";
   themeToggle.querySelector(".theme-label").textContent = isDark
-    ? "Dark mode"
-    : "Light mode";
+    ? tr("Dark mode")
+    : tr("Light mode");
   document.querySelector('meta[name="theme-color"]').content = isDark
     ? "#101216"
     : "#070707";
 }
 updateThemeButton(initialTheme);
+applyLanguage();
 themeToggle.addEventListener("click", () => {
   const nextTheme =
     document.documentElement.dataset.theme === "dark" ? "light" : "dark";
@@ -1901,6 +2583,8 @@ const messages = document.querySelector("#chatMessages");
 const toggleChat = (show) => {
   panel.classList.toggle("open", show);
   panel.setAttribute("aria-hidden", String(!show));
+  panel.inert = !show;
+  document.querySelector("#chatToggle").setAttribute("aria-expanded", String(show));
   if (show) document.querySelector("#chatInput").focus();
 };
 document
